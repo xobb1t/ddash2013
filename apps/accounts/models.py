@@ -15,7 +15,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     full_name = models.CharField(_(u'full name'), max_length=255)
     login = models.SlugField(_(u'login'), max_length=255)
-    organization = models.ForeignKey('organizations.Organization')
+    organization = models.ForeignKey('organizations.Organization',
+                                     related_name='members')
     is_owner = models.BooleanField(_(u'is owner'), default=False)
     is_active = models.BooleanField(_(u'is active'), default=False)
     joined_at = models.DateTimeField(_(u'joined at'), auto_now_add=True)
