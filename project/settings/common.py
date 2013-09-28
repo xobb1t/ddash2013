@@ -71,6 +71,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'gears',
     'south',
     'subdomains',
 
@@ -114,4 +115,23 @@ AUTH_USER_MODEL = 'accounts.User'
 
 SUBDOMAIN_URLCONFS = (
     (r'^(?P<organization>\w+)$', ''),
+)
+
+GEARS_ROOT = os.path.join(PROJECT_ROOT, 'static')
+GEARS_DIRS = (
+    os.path.join(PROJECT_ROOT, 'assets'),
+)
+GEARS_COMPRESSORS = {
+    'text/css': 'gears_clean_css.CleanCSSCompressor',
+    'application/javascript': 'gears_uglifyjs.UglifyJSCompressor',
+}
+GEARS_COMPILERS = {
+    '.less': 'gears_less.LESSCompiler',
+}
+
+GEARS_PUBLIC_ASSETS = (
+    lambda path: not any(path.endswith(ext) for ext in ('.css', '.js')),
+    lambda path: path.startswith('js/libs'),
+    r'^css/style\.css$',
+    r'^js/script\.js$',
 )
