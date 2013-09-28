@@ -43,7 +43,7 @@ def set_password(request):
     form = SetPasswordForm(request.user, request.POST or None)
     if form.is_valid():
         form.save()
-        return redirect('')  # TODO: Redirect url after set new password.
+        return redirect('/')
     return render(request, 'accounts/set_password.html', {
         'form': form
     })
