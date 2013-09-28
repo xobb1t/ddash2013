@@ -9,20 +9,18 @@
     <i class="icon"></i>
   </div>
   <div class="flogin__form flogin__form_type">
-    {{ form.non_field_errors }}
     <form action="" method="POST">
       {% csrf_token %}
-      <div class="field">
+      <div class="field{% if form.username.errors or form.non_field_errors %} error{% endif %}">
         {% render_field form.username placeholder='Email' %}
-        {{ form.username.errors }}
       </div>
-      <div class="field">
+      <div class="field{% if form.password.errors or form.non_field_errors %} error{% endif %}">
         {% render_field form.password placeholder='Password' %}
-        {{ form.password.errors }}
       </div>
       <div class="button">
         <input type="submit" value="Go">
       </div>
+      {{ form.non_field_errors }}
     </form>
   </div>
 </div>
