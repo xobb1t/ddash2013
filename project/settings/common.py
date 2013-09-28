@@ -137,3 +137,7 @@ GEARS_PUBLIC_ASSETS = (
     r'^css/style\.css$',
     r'^js/script\.js$',
 )
+
+AUTHENTICATION_BACKENDS = (
+    'accounts.backends.UserAuthenticationBackend',
+)
