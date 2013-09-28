@@ -76,6 +76,7 @@ INSTALLED_APPS = (
     'subdomains',
 
     'accounts',
+    'organizations',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
