@@ -79,6 +79,7 @@ INSTALLED_APPS = (
 
     'accounts',
     'organizations',
+    'private',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
@@ -117,7 +118,7 @@ AUTH_USER_MODEL = 'accounts.User'
 
 SUBDOMAIN_URLCONFS = (
     (r'^www$', 'project.urls'),
-    (r'^(\w+)$', 'organizations.urls'),
+    (r'^(\w+)$', 'private.urls'),
 )
 
 GEARS_ROOT = os.path.join(PROJECT_ROOT, 'static')
