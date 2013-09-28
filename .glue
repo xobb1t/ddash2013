@@ -1,0 +1,2 @@
+glue project/assets/images/sprite --img=project/assets/images --css=project/assets/css/
+echo 'ok'
