@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+  <section class="profile">
+
+    <aside class="profile__aside">
+      <div class="profile__avatar">
+        <span class="img">
+          <img src="{{ STATIC_URL }}uploads/logo.png" alt="Company name">
+        </span>
+      </div>
+
+
+
+    </aside>
+
+
+
+    <div class="profile__info">
+      
+      <div class="profile__name" id="js-edit-name">
+        <form action="#?">
+          <div class="field">
+            <input type="text" value="Company name" placeholder="Company name">
+          </div>
+          <div class="button">
+            <input type="submit" value="Send" class="btn">
+          </div>
+        </form>
+      </div>
+
+      <div class="profile__stats">
+        <div class="item">
+          <span class="title">
+            active users
+          </span>
+          <span class="value">16</span>
+        </div>
+        <div class="item">
+          <span class="title">
+            all users
+          </span>
+          <span class="value">85</span>
+        </div>
+      </div>
+
+      <div class="users">
+        <table>
+          <tr>
+            <th>#</th>
+            <th>Login</th>
+            <th>Email</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+          <tr>
+            <td>1.</td>
+            <td>
+              <a href="#?">Trolev</a>
+            </td>
+            <td>
+              troelv@gmail.com
+            </td>
+            <td>
+              ok
+            </td>
+            <td>
+              <a href="#?">delete</a>
+            </td>
+          </tr>
+          <tr>
+            <td>2.</td>
+            <td>
+              <a href="#?">BananNn</a>
+            </td>
+            <td>
+              BananNn@gmail.com
+            </td>
+            <td>
+              ok
+            </td>
+            <td>
+              <a href="#?">delete</a>
+            </td>
+          </tr>
+        </table>
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

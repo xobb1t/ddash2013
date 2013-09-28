@@ -22,7 +22,11 @@ body {
 }
 
 a {
-  color: #1b66ff;
+  color: #224cff;
+}
+
+img {
+  max-width: 100%;
 }
 
 /*Blocks*/
@@ -46,7 +50,123 @@ a {
   clear: both;
 }
 
+/*$container*/
+.container {
+  margin-bottom: 100px;
+
+  .clear-style;
+}
+
 /*$head*/
 .header {
   height: 100px;
 }
+
+/*$profile*/
+.profile {
+
+  .clear-style;
+}
+
+.profile__aside {
+  float: left;
+  width: 198px;
+}
+
+.profile__avatar {
+  margin-bottom: 20px;
+  padding: 4px;
+  border: 1px solid #a1a1a1;
+
+  .img {
+    display: block;
+    position: relative;
+  }
+
+  img {
+    vertical-align: top;
+  }
+}
+
+.profile__stats {
+  position: absolute;
+  right: 0;
+  top: -13px;
+  text-align: center;
+  width: 300px;
+
+  .item {
+    display: inline-block;
+    margin: 0 10px;
+  }
+
+  .title {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #d1d1d1;
+  }
+
+  .value {
+    font-size: 44px;
+  }
+}
+
+.profile__info {
+  position: relative;
+  float: right;
+  width: 680px;
+}
+
+.profile__name {
+  position: relative;
+  margin-bottom: 60px;
+  font-size: 22px;
+
+  .clear-style;
+
+  .field {
+    float: left;
+    margin-right: 30px;
+    width: 300px;
+    margin-bottom: 0;
+  }
+
+  .button {
+    float: left;
+    .opacity(0);
+    .transition(opacity 0.2s ease);
+  }
+
+  input[type=text] {
+    padding: 13px 17px 11px;
+    font-size: 25px;
+  }
+
+
+  .btn {
+    padding-top: 2px;
+    height: 52px;
+  }
+
+  &.edit {
+
+    .button {
+      .opacity(100);
+    }
+  }
+}
+
+/*$users*/
+.users {
+
+  table {
+    width: 100%;
+  }
+
+  th, td {
+    padding: 10px;
+    border-bottom: 1px solid #dfdfdf;
+  }
+}
+
