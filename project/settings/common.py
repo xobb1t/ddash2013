@@ -158,3 +158,5 @@ GEARS_PUBLIC_ASSETS = (
 AUTHENTICATION_BACKENDS = (
     'accounts.backends.UserAuthenticationBackend',
 )
+
+LOGIN_REDIRECT_URL = ''
