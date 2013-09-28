@@ -159,4 +159,4 @@ AUTHENTICATION_BACKENDS = (
     'accounts.backends.UserAuthenticationBackend',
 )
 
-LOGIN_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = '/accounts/login/'
