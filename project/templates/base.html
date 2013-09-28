@@ -1,0 +1,35 @@
+<!doctype html>{% load gears %}
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Бла бла</title>
+  <meta name="viewport" content="width=device-width">
+  <link href="{{ STATIC_URL }}images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="apple-touch-icon" href="{{ STATIC_URL }}images/apple-touch-icon.png">
+  <meta name="keywords" content="keywords">
+  <meta name="description" content="description">
+  {% css_asset_tag "css/style.css" %}
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      Header
+    </header>
+    <section class="container">
+      <section class="content">
+        Content
+      </section>
+      <aside class="aside">
+        Aside
+      </aside>
+    </section><!-- class="container" -->
+    <footer class="footer">
+      Footer
+    </footer><!-- class="footer" -->
+  </div><!-- class="page" -->
+
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script type="text/javascript" src="{{ STATIC_URL }}js/libs/jquery-1.9.1.min.js"><\/script>')</script>
+  {% js_asset_tag "js/script.js" %}
+</body>
+</html>

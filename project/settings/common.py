@@ -86,7 +86,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'gears',
+    'django_gears',
     'openid_provider',
     'sitesutils',
     'south',

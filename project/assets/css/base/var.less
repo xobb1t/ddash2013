@@ -1,0 +1,78 @@
+@base-color: #333;
+
+@arial: Arial, 'Helvetica CY', 'Nimbus Sans L', sans-serif;
+@verdana: Verdana, 'Geneva CY', 'DejaVu Sans', sans-serif;
+@tahoma: Tahoma, 'Geneva CY', sans-serif;
+@roman: 'Times New Roman', 'Times CY', 'Nimbus Roman No9 L', serif;
+@georgia: Georgia, 'Century Schoolbook L', serif;
+
+.border-radius(@arguments: 5px) {
+  -webkit-border-radius: @arguments;
+  -moz-border-radius: @arguments;
+  border-radius: @arguments;
+}
+
+.box-shadow(@arguments: 0 0 2px 0 rgba(0, 0, 0, 0.10)) {
+  -webkit-box-shadow: @arguments;
+  -moz-box-shadow: @arguments;
+  box-shadow: @arguments;
+}
+
+.gradient(@color: #F5F5F5, @start: #FFF, @stop: #EEE) {
+  background: @color;
+  background: -moz-linear-gradient(top, @start 0%, @stop 100%);
+  background: -webkit-linear-gradient(top,  @start 0%, @stop 100%);
+  background: -o-linear-gradient(top,  @start 0%, @stop 100%);
+  background: -ms-linear-gradient(top,  @start 0%, @stop 100%);
+  background: linear-gradient(to bottom,  @start 0%, @stop 100%);
+}
+
+.gradient-hor(@color: #F5F5F5, @start: #555, @stop: #333) {
+  background: @color;
+  background-image: -moz-linear-gradient(left, @start, @stop);
+  background-image: -webkit-gradient(linear, 0 0, 100% 0, from(@start), to(@stop));
+  background-image: -webkit-linear-gradient(left, @start, @stop);
+  background-image: -o-linear-gradient(left, @start, @stop);
+  background-image: linear-gradient(to right, @start, @stop);
+  background-repeat: repeat-x;
+}
+
+.sprite(@position) {
+  background: url('../images/sprite.png') no-repeat @position;
+}
+
+.opacity(@a: 0) {
+  opacity: @a/100;
+  filter:~"alpha(opacity=@{a})";
+}
+
+.transition(@transition) {
+  -webkit-transition: @transition;
+  -moz-transition: @transition;
+  -o-transition: @transition;
+  transition: @transition;
+}
+
+.rotate(@degrees) {
+  -webkit-transform: rotate(@degrees);
+  -moz-transform: rotate(@degrees);
+  -ms-transform: rotate(@degrees);
+  -o-transform: rotate(@degrees);
+  transform: rotate(@degrees);
+}
+
+.box-sizing(@boxmodel) {
+  -webkit-box-sizing: @boxmodel;
+  -moz-box-sizing: @boxmodel;
+  box-sizing: @boxmodel;
+}
+
+.clear-style() {
+  &:after {
+    display: block;
+    content: '';
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+  }
+}
