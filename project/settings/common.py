@@ -91,6 +91,7 @@ INSTALLED_APPS = (
     'sitesutils',
     'south',
     'subdomains',
+    'widget_tweaks',
 
     'accounts',
     'organizations',
@@ -160,3 +161,4 @@ AUTHENTICATION_BACKENDS = (
 )
 
 LOGIN_REDIRECT_URL = '/accounts/login/'
+
