@@ -23,7 +23,7 @@ class LoginForm(AuthenticationForm):
             )
             if self.user_cache is None:
                 raise forms.ValidationError('Invalid email or password.')
-            else:
-                self.confirm_login_allowed(self.user_cache)
+            elif not self.user_cache.is_active:
+                raise forms.ValidationError(self.error_messages['inactive'])
 
         return self.cleaned_data
