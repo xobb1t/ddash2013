@@ -34,10 +34,3 @@ class LoginForm(AuthenticationForm):
                 self.confirm_login_allowed(self.user_cache)
 
         return self.cleaned_data
-
-
-class InviteForm(forms.ModelForm):
-
-    class Meta:
-        model = User
-        fields = ['email', 'login', 'full_name']

@@ -5,7 +5,7 @@ from accounts.models import User
 from .models import Organization
 
 
-class RegistrationForm(forms.ModelForm):
+class OrganizationRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = Organization
@@ -40,3 +40,36 @@ class OwnerRegistrationForm(forms.ModelForm):
         if commit:
             user.save()
         return user
+
+
+class InviteForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['full_name', 'login', 'email']
+
+    def __init__(self, *args, **kwargs):
+        self.organization = kwargs.pop('organization')
+        super(InviteForm, self).__init__(*args, **kwargs)
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        qs = self.organization.members.filter(email__iexact=email)
+        if qs.exists():
+            raise forms.ValidationError(_(u'This email already registered'))
+        return email
+
+    def save(self, commit=True):
+        user = super(InviteForm, self).save(commit=False)
+        user.organization = self.organization
+        user.set_unusable_password()
+        if commit:
+            user.save()
+        return user
+
+
+class OrganizationForm(forms.ModelForm):
+
+    class Meta:
+        model = Organization
+        fields = ['name']
