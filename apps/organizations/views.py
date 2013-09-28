@@ -1,6 +1,7 @@
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.utils import simplejson as json
+from django.views.decorators.http import require_POST
 
 from .forms import RegistrationForm, OwnerRegistrationForm
 
@@ -24,8 +25,8 @@ def registration_view(request):
     })
 
 
+@require_POST
 def check_organization_slug(request):
-
     slug = request.POST.get('slug')
     if slug is None:
         raise Http404

@@ -116,7 +116,8 @@ LOGGING = {
 AUTH_USER_MODEL = 'accounts.User'
 
 SUBDOMAIN_URLCONFS = (
-    (r'^(?P<slug>\w+)$', ''),
+    (r'^www$', 'project.urls'),
+    (r'^(\w+)$', 'organizations.urls'),
 )
 
 GEARS_ROOT = os.path.join(PROJECT_ROOT, 'static')
