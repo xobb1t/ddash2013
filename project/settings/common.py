@@ -88,7 +88,7 @@ INSTALLED_APPS = (
 
     'gears',
     'openid_provider',
-    'siteustils',
+    'sitesutils',
     'south',
     'subdomains',
 
