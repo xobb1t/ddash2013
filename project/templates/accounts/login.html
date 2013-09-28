@@ -1,1 +1,29 @@
-<!-- Login form -->
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="flogin flogin_center">
+  <div class="flogin__head">
+    Log in
+    <i class="icon"></i>
+  </div>
+  <div class="flogin__form flogin__form_type">
+    {{ form.non_field_errors }}
+    <form action="" method="POST">
+      {% csrf_token %}
+      <div class="field">
+        {% render_field form.username placeholder='Email' %}
+        {{ form.username.errors }}
+      </div>
+      <div class="field">
+        {% render_field form.password placeholder='Password' %}
+        {{ form.password.errors }}
+      </div>
+      <div class="button">
+        <input type="submit" value="Go">
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

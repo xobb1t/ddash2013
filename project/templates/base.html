@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
   <meta charset="utf-8">
-  <title>Бла бла</title>
+  <title>{% block html_title %}{% endblock %}</title>
   <meta name="viewport" content="width=device-width">
   <link href="{{ STATIC_URL }}images/favicon.ico" rel="shortcut icon" type="image/x-icon">
   <link rel="apple-touch-icon" href="{{ STATIC_URL }}images/apple-touch-icon.png">
@@ -12,7 +12,7 @@
 </head>
 <body>
   <div class="page">
-  {% block page %}
+  {% block content %}
     <header class="header">
       Header
     </header>
