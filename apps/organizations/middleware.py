@@ -9,9 +9,13 @@ class OrganizationMiddleware(object):
         if request.subdomain is None:
             return
         subdomain = request.subdomain
+
         try:
-            request.organization = Organization.objects.get(
+            organization = Organization.objects.get(
                 slug__iexact=subdomain
             )
         except Organization.DoesNotExist:
+            raise Http404
+        user = request.user
+        if user.is_authenticated() and organization != user.organization:
             raise Http404
