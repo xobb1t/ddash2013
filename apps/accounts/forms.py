@@ -7,9 +7,6 @@ from .models import User
 
 class LoginForm(AuthenticationForm):
 
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
-
     def __init__(self, *args, **kwargs):
         self.organization = kwargs.pop('organization')
         super(LoginForm, self).__init__(*args, **kwargs)
