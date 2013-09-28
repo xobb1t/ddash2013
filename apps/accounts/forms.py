@@ -17,16 +17,12 @@ class LoginForm(AuthenticationForm):
 
         if username and password:
             self.user_cache = authenticate(
-                username=username,
+                email=username,
                 password=password,
                 organization=self.organization
             )
             if self.user_cache is None:
-                raise forms.ValidationError(
-                    self.error_messages['invalid_login'],
-                    code='invalid_login',
-                    params={'username': 'email'},
-                )
+                raise forms.ValidationError('Invalid email or password.')
             else:
                 self.confirm_login_allowed(self.user_cache)
 
