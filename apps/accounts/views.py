@@ -12,6 +12,10 @@ def activate(request):
     user = Activation.objects.activate(key)
     if not user:
         raise Http404
+    user.backend = 'accounts.activate'
+    login(request, user)
+    if not user.has_usable_password():
+        redirect('accounts_new_password')
     return render(request, 'accounts/activation_success.html')
 
 
