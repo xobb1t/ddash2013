@@ -1,5 +1,6 @@
-Activation on singlepointhq.com{% load subdomainurls %}
+{% load subdomainurls %}Activation on {{ site.name }}.
 
 Hello, {{ activation.user.full_name }}!
 
+To activate your account, use link bellow:
 {% url 'accounts_activate' subdomain=activation.user.organization.slug %}?key={{ activation.key }}
