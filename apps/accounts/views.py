@@ -23,11 +23,14 @@ def activate(request):
 
 
 def login_view(request):
-    form = LoginForm(request.POST or None, organization=request.organization)
+    form = LoginForm(
+        data=request.POST or None,
+        organization=request.organization
+    )
     if form.is_valid():
         login(request, form.user_cache)
         next = request.GET.get('next')
-        return redirect(next or settings.LOGIN_REDIRECT_URL)
+        return redirect(next or '/')
     return render(request, 'accounts/login.html', {
         'form': form
     })
