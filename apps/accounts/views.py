@@ -15,7 +15,7 @@ def activate(request):
     user.backend = 'accounts.activate'
     login(request, user)
     if not user.has_usable_password():
-        redirect('accounts_new_password')
+        return redirect('accounts_new_password')
     return render(request, 'accounts/activation_success.html')
 
 
