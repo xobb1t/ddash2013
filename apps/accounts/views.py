@@ -6,7 +6,7 @@ from django.contrib.auth.forms import SetPasswordForm
 from django.http import Http404
 from django.shortcuts import redirect, render
 
-from .models import Activation
+from .models import Activation, User
 from .forms import LoginForm
 
 
@@ -37,10 +37,24 @@ def login_view(request):
 def set_password(request):
     if user.has_usable_password():
         raise Http404
-    form = SetPasswordForm(request.user, request.POST or None):
+    form = SetPasswordForm(request.user, request.POST or None)
     if form.is_valid():
         form.save()
         return redirect('')  # TODO: Redirect url after set new password.
     return render(request, 'accounts/set_password.html', {
         'form': form
+    })
+
+
+@login_required
+def profile(request, slug=None):
+    user = request.user
+    organization = request.organization
+    if slug:
+        if not (user.is_owner and user.organization == organization):
+            raise Http404
+        user = User.objects.get(slug=slug)
+    return render(request, 'accounts/profile.html', {
+        'user': user,
+        'organization': organization
     })
