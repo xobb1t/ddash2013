@@ -74,6 +74,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'gears',
+    'openid_provider',
     'south',
     'subdomains',
 
