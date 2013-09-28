@@ -47,6 +47,8 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'subdomains.middleware.SubdomainURLRoutingMiddleware',
+    'organizations.middleware.OrganizationMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -114,7 +116,7 @@ LOGGING = {
 AUTH_USER_MODEL = 'accounts.User'
 
 SUBDOMAIN_URLCONFS = (
-    (r'^(?P<organization>\w+)$', ''),
+    (r'^(?P<slug>\w+)$', ''),
 )
 
 GEARS_ROOT = os.path.join(PROJECT_ROOT, 'static')
