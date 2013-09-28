@@ -1,5 +1,34 @@
 from django.contrib.auth.models import BaseUserManager
+from django.db import models
 from django.utils import timezone
+
+
+class ActivationManager(models.Manager):
+
+    def make_activation(self, user):
+        salt = hashlib.sha1(str(random.random())).hexdigest()[:5]
+        base = user.email
+        if isinstance(base, unicode):
+            base = base.encode('utf-8')
+        key = hashlib.sha(salt+base).hexdigest()
+        expires_at = timezone.now() + timedelta(
+            days=getattr(settings, 'ACTIVATION_DAYS', 7)
+        )
+        return self.create(user=user, key=key, expires_at=expires_at)
+
+    def activate(self, key):
+        try:
+            activation = self.get(
+                key=key, is_activated=False, expires_at__gte=timezone.now()
+            )
+        except self.model.DoesNotExist:
+            return False
+        activation.is_activated = True
+        activation.save()
+        user = activation.user
+        user.is_active = True
+        user.save()
+        return user
 
 
 class UserManager(BaseUserManager):

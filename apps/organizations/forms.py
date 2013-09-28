@@ -35,6 +35,7 @@ class OwnerRegistrationForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super(OwnerRegistrationForm, self).save(commit=commit)
+        user.email = User.objects.normalize_email(user.email)
         user.set_password(self.cleaned_data['password2'])
         if commit:
             user.save()

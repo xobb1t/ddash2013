@@ -18,6 +18,9 @@ def registration_view(request):
         user.organization = organization
         user.is_owner = True
         user.save()
+
+        activation = user.make_activation()
+
         return redirect('organizations_registration_success')
     return render(request, 'organizations/registration.html', {
         'organization_form': organization_form,

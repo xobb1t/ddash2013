@@ -1,8 +1,12 @@
+from datetime import timedelta
+
+from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
-from .managers import UserManager
+from .managers import UserManager, ActivationManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -31,3 +35,21 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def get_short_name(self):
         return self.login
+
+    def make_activation(self):
+        if self.is_active:
+            return
+        return self.activations.make_activation(self)
+
+
+class Activation(models.Model):
+
+    user = models.ForeignKey(User, related_name='activations')
+    key = models.CharField(max_length=40)
+    is_activated = models.BooleanField(default=False)
+    expires_at = models.DateTimeField()
+
+    objects = ActivationManager()
+
+    def is_expired(self):
+        return timezone.now() > self.expires_at
