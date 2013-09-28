@@ -7,11 +7,11 @@ from django.views.decorators.http import require_POST
 
 from accounts.utils import send_activation_email
 
+from .decorators import owner_required
 from .forms import (
     OrganizationRegistrationForm, OwnerRegistrationForm,
     InviteForm, OrganizationForm,
 )
-from .decorators import owner_required
 
 
 def registration_view(request):
