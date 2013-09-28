@@ -48,12 +48,14 @@ TEMPLATE_LOADERS = (
 
 MIDDLEWARE_CLASSES = (
     'subdomains.middleware.SubdomainURLRoutingMiddleware',
-    'organizations.middleware.OrganizationMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'sitesutils.middleware.RequestSiteMiddleware',
+
+    'organizations.middleware.OrganizationMiddleware',
 )
 
 ROOT_URLCONF = 'project.urls'
@@ -63,6 +65,17 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.core.context_processors.static',
+    'django.core.context_processors.tz',
+    'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
+    'sitesutils.context_processors.site',
 )
 
 INSTALLED_APPS = (
@@ -75,6 +88,7 @@ INSTALLED_APPS = (
 
     'gears',
     'openid_provider',
+    'siteustils',
     'south',
     'subdomains',
 

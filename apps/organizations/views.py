@@ -23,7 +23,7 @@ def registration_view(request):
         user.save()
 
         activation = user.make_activation()
-        send_activation_email(activation)
+        send_activation_email(request, activation)
 
         return redirect('organizations_registration_success')
     return render(request, 'organizations/registration.html', {

@@ -1,6 +1,7 @@
 Django==1.5.4
 South==0.8.2
 python-openid==2.2.5
+django-sitesutils==0.1.2
 
 Gears==0.6
 django-gears==0.5
