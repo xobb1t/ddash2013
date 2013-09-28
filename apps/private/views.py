@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 
 from accounts.utils import send_activation_email
 
-from .forms import InviteForm
+from accounts.forms import InviteForm
 
 
 owner_required = user_passes_test(
