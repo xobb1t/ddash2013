@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 
 from accounts.models import User
 from .models import Organization
@@ -16,7 +17,7 @@ class OwnerRegistrationForm(forms.ModelForm):
         label=_(u'Password'), widget=forms.PasswordInput()
     )
     password2 = forms.CharField(
-        label=_(u'Password confirmation'), widget=PasswordInput(),
+        label=_(u'Password confirmation'), widget=forms.PasswordInput(),
     )
 
     class Meta:
