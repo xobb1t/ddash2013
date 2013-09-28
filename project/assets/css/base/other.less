@@ -14,6 +14,24 @@ input[type="password"] {
   }
 }
 
+.small-field input[type="text"],
+.small-field input[type="password"] {
+  padding: 10px 10px 9px;
+}
+
+.success input {
+  border-color: #1ada0b;
+}
+
+/*$btn*/
+.btn {
+  border: none;
+  color: #fff;
+  padding: 1px 15px 0;
+  height: 34px;
+  .gradient(#414141, #525252, #414141);
+}
+
 /*$errorlist*/
 .errorlist {
   padding-top: 20px;
@@ -23,7 +41,15 @@ input[type="password"] {
 
 /*$field*/
 .field {
+  position: relative;
   margin-bottom: 20px;
+
+  .ok {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: -8px 0 0 -8px;
+  }
 
   label {
     display: block;
@@ -118,5 +144,50 @@ input[type="password"] {
   input[type=submit] {
     width: 89px;
     height: 89px;
+  }
+}
+
+/*$freg*/
+.freg {
+  margin: 0 auto;
+  width: 375px;
+
+  .field-login {
+    float: left;
+    width: 155px;
+  }
+
+  .field-domain {
+    position: relative;
+    float: left;
+    width: 200px;
+    float: right;
+
+    input {
+      padding-right: 113px;
+    }
+
+    .domain {
+      position: absolute;
+      left: 88px;
+      top: 8px;
+      font-size: 13px;
+      height: 20px;
+      width: 111px;
+      line-height: 20px;
+      background: #fefefb;
+      color: #8f8f8f;
+    }
+  }
+
+  .line {
+    display: block;
+    border-bottom: 1px solid #dfdfdf;
+    margin-bottom: 20px;
+    clear: both;
+  }
+
+  .fields-column {
+    width: 177px;
   }
 }
