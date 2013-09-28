@@ -1,7 +1,49 @@
-<form action="{% url 'organizations_registration' %}" method="POST">
-{% csrf_token %}
-{{ organization_form.as_ul }}
-<hr>
-{{ user_form.as_ul }}
-<input type="submit">
-</form>
+{% extends 'base.html' %}
+
+{% load widget_tweaks %}
+
+{% block page %}
+<br>
+<br>
+<br>
+<br>
+{{ organization_form.errors }}
+{{ user_form.errors }}
+<div class="freg small-field">
+  <form action="." method="POST">
+    {% csrf_token %}
+    <div class="field field-login">
+      {% render_field organization_form.name placeholder='Company name' %}
+    </div>
+    <div class="field field-domain success">
+      <i class="ok"></i>
+      {% render_field organization_form.slug placeholder='URL' %}
+      <span class="domain">.single-point.com</span>
+    </div>
+    <span class="line"></span>
+    <div class="field ">
+      {% render_field user_form.full_name placeholder='Full name' %}
+    </div>
+    <div class="fields-column left">
+      <div class="field ">
+        {% render_field user_form.login placeholder='Login' %}
+      </div>
+      <div class="field">
+        {% render_field user_form.email placeholder='Email' %}
+      </div>
+    </div>
+    <div class="fields-column right">
+      <div class="field ">
+        {% render_field user_form.password1 placeholder='Password' %}
+      </div>
+      <div class="field">
+        {% render_field user_form.password2 placeholder='Confirm password' %}
+      </div>
+    </div>
+    <span class="line"></span>
+    <div class="field">
+      <input type="submit" value="Send" class="btn">
+    </div>
+  </form>
+</div>
+{% endblock %}
