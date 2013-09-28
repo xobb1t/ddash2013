@@ -15,11 +15,11 @@ def activate(request):
     user = Activation.objects.activate(key)
     if not user:
         raise Http404
-    user.backend = 'accounts.activate'
+    user.backend = 'accounts.backends.UserAuthenticationBackend'
     login(request, user)
     if not user.has_usable_password():
         return redirect('accounts_set_password')
-    return render(request, 'accounts/activation_success.html')
+    return redirect('accounts_profile')
 
 
 def login_view(request):
