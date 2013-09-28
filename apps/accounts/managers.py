@@ -1,3 +1,9 @@
+import hashlib
+import random
+
+from datetime import timedelta
+
+from django.conf import settings
 from django.contrib.auth.models import BaseUserManager
 from django.db import models
 from django.utils import timezone
@@ -10,7 +16,7 @@ class ActivationManager(models.Manager):
         base = user.email
         if isinstance(base, unicode):
             base = base.encode('utf-8')
-        key = hashlib.sha(salt+base).hexdigest()
+        key = hashlib.sha1(salt+base).hexdigest()
         expires_at = timezone.now() + timedelta(
             days=getattr(settings, 'ACTIVATION_DAYS', 7)
         )

@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 
@@ -11,4 +12,4 @@ def send_activation_email(request, activation):
     body = render_to_string('accounts/mail/activation_body.txt', {
         'activation': activation, 'site': request.site,
     })
-    send_mail(subject, message, settings.DEFAULT_EMAIL_FROM, [activation.user.email])
+    send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [activation.user.email])

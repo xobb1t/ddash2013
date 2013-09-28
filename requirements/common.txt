@@ -10,5 +10,5 @@ gears-less==0.3.1
 gears-uglifyjs==0.1.1
 gears-clean-css==0.1.2
 
--e git+git@github.com:tkukushkin/django-subdomains.git@33410e959e54a72650cdd26baf31a09189cd8221#egg=django-subdomains
+-e git+git@github.com:tkukushkin/django-subdomains.git@2859e39459942f202dd22447193dc8c5b5e02a6a#egg=django-subdomains
 -e hg+https://bitbucket.org/romke/django_openid_provider@51a2b065a387e27aac3764e132da3d9d1be310cb#egg=django-openid-provider

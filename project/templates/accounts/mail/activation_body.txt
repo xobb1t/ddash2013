@@ -1,0 +1,5 @@
+Activation on singlepointhq.com{% load subdomainurls %}
+
+Hello, {{ activation.user.full_name }}!
+
+{% url 'accounts_activate' subdomain=activation.user.organization.slug %}?key={{ activation.key }}

@@ -1,0 +1,7 @@
+<form action="{% url 'organizations_registration' %}" method="POST">
+{% csrf_token %}
+{{ organization_form.as_ul }}
+<hr>
+{{ user_form.as_ul }}
+<input type="submit">
+</form>
