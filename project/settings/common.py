@@ -14,6 +14,7 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+ALLOWED_HOSTS = ['*']
 TIME_ZONE = 'Europe/Moscow'
 LANGUAGE_CODE = 'ru'
 SITE_ID = 1
@@ -72,6 +73,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
 
     'south',
+    'subdomains',
 
     'accounts',
 )
@@ -109,3 +111,7 @@ LOGGING = {
 
 
 AUTH_USER_MODEL = 'accounts.User'
+
+SUBDOMAIN_URLCONFS = (
+    (r'^(?P<organization>\w+)$', ''),
+)
