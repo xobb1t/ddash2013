@@ -57,7 +57,7 @@ input[type="password"] {
     position: absolute;
     right: 0;
     bottom: 0;
-    z-index: 2;
+    z-index: 5;
     margin: 0 -35px -35px 0;
   }
   input[type=submit] {
@@ -94,7 +94,12 @@ input[type="password"] {
   }
 
   input[type=password] {
-    border-top: none;
+    margin-top: -1px;
+  }
+
+  input:focus {
+    position: relative;
+    z-index: 2;
   }
 
   .button {
