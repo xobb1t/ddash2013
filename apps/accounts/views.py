@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import SetPasswordForm
+from django.http import Http404
 from django.shortcuts import redirect, render
 
 from .models import Activation
@@ -34,6 +35,8 @@ def login_view(request):
 
 @login_required
 def set_password(request):
+    if user.has_usable_password():
+        raise Http404
     form = SetPasswordForm(request.user, request.POST or None):
     if form.is_valid():
         form.save()
