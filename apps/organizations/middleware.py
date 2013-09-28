@@ -16,6 +16,9 @@ class OrganizationMiddleware(object):
             )
         except Organization.DoesNotExist:
             raise Http404
+
         user = request.user
         if user.is_authenticated() and organization != user.organization:
             raise Http404
+
+        request.organization = organization
