@@ -1,7 +1,10 @@
+from django.core.mail import send_mail
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.utils import simplejson as json
 from django.views.decorators.http import require_POST
+
+from accounts.utils import send_activation_email
 
 from .forms import RegistrationForm, OwnerRegistrationForm
 
@@ -20,6 +23,7 @@ def registration_view(request):
         user.save()
 
         activation = user.make_activation()
+        send_activation_email(activation)
 
         return redirect('organizations_registration_success')
     return render(request, 'organizations/registration.html', {

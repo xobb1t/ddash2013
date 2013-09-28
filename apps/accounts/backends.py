@@ -8,7 +8,7 @@ class UserAuthenticationBackend(ModelBackend):
 
     def authenticate(email, password, organization):
         try:
-            user = User.objects.get(email=email, organization=organization)
+            user = User.objects.get(email__iexact=email, organization=organization)
             if user.check_password(password):
                 return user
         except User.DoesNotExist:
