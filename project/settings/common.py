@@ -89,6 +89,7 @@ INSTALLED_APPS = (
 
     'django_gears',
     'easy_thumbnails',
+    'gravatar',
     'openid_provider',
     'sitesutils',
     'south',

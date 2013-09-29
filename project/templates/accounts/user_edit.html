@@ -1,0 +1,10 @@
+{% load widget_tweaks subdomainurls %}
+<form action="{% url 'accounts_user_edit' slug=user.login subdomain=user.organization.slug %}" method="POST">
+  {% csrf_token %}
+  <div class="field">
+    {% render_field form.full_name placeholder='Full name' %}
+  </div>
+  <div class="button">
+    <input type="submit" value="Send" class="btn">
+  </div>
+</form>

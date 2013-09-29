@@ -1,6 +1,6 @@
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import SetPasswordForm
+from django.contrib.auth.forms import SetPasswordForm, PasswordChangeForm
 from django.http import Http404
 from django.shortcuts import redirect, render, get_object_or_404
 
@@ -17,7 +17,7 @@ def activate(request):
     login(request, user)
     if not user.has_usable_password():
         return redirect('accounts_set_password')
-    return redirect('accounts_profile')
+    return redirect('accounts_user_detail')
 
 
 def login_view(request):
@@ -48,21 +48,43 @@ def set_password(request):
 
 
 @login_required
-def profile(request, slug=None):
+def user_detail(request, slug=None):
+    user = request.user
+    organization = request.organization
+    password_change_form = PasswordChangeForm(user, request.POST or None)
+
+    if slug:
+        if not user.is_owner:
+            raise Http404
+        user = get_object_or_404(organization.members.all(), login=slug)
+        password_change_form = SetPasswordForm(user, request.POST or None)
+
+    if password_change_form.is_valid():
+        password_change_form.save()
+
+    return render(request, 'accounts/user_detail.html', {
+        'user': user,
+        'organization': organization,
+        'password_change_form': password_change_form
+    })
+
+
+@login_required
+def user_edit(request, slug=None):
     user = request.user
     organization = request.organization
     if slug:
-        if not (user.is_owner and user.organization == organization):
+        if not user.is_owner:
             raise Http404
-        members = organization.members.all()
-        user = get_object_or_404(members, login=slug)
+        user = get_object_or_404(organization.members.all(), login=slug)
 
-    edit_form = UserEditForm(request.POST or None, instance=user)
-    if edit_form.is_valid():
-        user = edit_form.save()
+    form = UserEditForm(request.POST or None, instance=user)
+    if form.is_valid():
+       form.save()
 
-    return render(request, 'accounts/profile.html', {
-        'user': user,
-        'organization': organization,
-        'edit_form': edit_form
+    return render(request, 'accounts/user_edit.html', {
+        'form': form,
+        'user': user
     })
+
+

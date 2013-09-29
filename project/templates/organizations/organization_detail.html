@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load thumbnail widget_tweaks organizations %}
+{% load thumbnail widget_tweaks organizations subdomainurls %}
 
 {% block content %}
 <section class="profile">
@@ -19,7 +19,7 @@
     </section>
 
     <div class="profile__id">
-      OpenID identity: http://{{ organization.slug }}.{{ site.domain }}{% url 'openid-provider-xrds' %}
+      OpenID identity: {% url 'openid-provider-xrds' subdomain=organization.slug %}
     </div>
 
     <section class="users">
@@ -37,7 +37,7 @@
           <td class="num">{{ forloop.counter }}.</td>
           <td>{{ object.full_name }}</td>
           <td>
-            <a href="{{ object.get_absolute_url }}">{{ object.login }}</a>
+            <a href="{% url 'accounts_user_detail_for_slug' slug=object.login subdomain=organization.slug %}">{{ object.login }}</a>
           </td>
           <td>
             {{ object.email }}

@@ -1,11 +1,15 @@
 from django.conf.urls import include, patterns, url
 
-from .views import activate, login_view, set_password, profile
+from .views import activate, login_view, set_password, user_detail, user_edit
 
 
 urlpatterns = patterns(
     '',
-    url(r'^(profile/(?P<slug>\w+)?)?$', profile, name='accounts_profile'),
+    url(r'^/$', user_detail, name='accounts_user_detail'),
+    url(r'^user/(?P<slug>\w+)/$', user_detail,
+        name='accounts_user_detail_for_slug'),
+    url(r'^user/(?P<slug>\w+)/edit/$', user_edit,
+        name='accounts_user_edit'),
     url(r'^login/$', login_view, name='accounts_login'),
     url(r'^set_password/$', set_password, name='accounts_set_password'),
     url(r'^activate/$', activate, name='accounts_activate'),

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% load gravatar accounts widget_tweaks %}
+
+{% block content %}
+<section class="profile">
+  <aside class="profile__aside">
+    <div class="profile__avatar">
+      <span class="img">
+        <img src="{% gravatar_for_email user.email 274 %}">
+      </span>
+    </div>
+  </aside>
+
+  <div class="profile__info">
+    <section class="profile__name" id="js-edit-name">
+      {% user_edit_form %}
+    </section>
+
+    <ul class="profile__list">
+      <li class="item">
+        OpenID: http://{{ organization.slug }}.{{ site.domain }}{% url 'openid-provider-identity' user.login %}
+      </li>
+      <li class="item">
+        Login: {{ user.login }}
+      </li>
+      <li class="item">
+        Email: {{ user.email }}
+      </li>
+      <li class="item">
+        Organization: {{ user.organization.name }}
+      </li>
+    </ul>
+
+    <div class="profile__password" id="change-password">
+      <a class="btn open">Change password</a>
+      <div class="fpassword small-field hide">
+        <form action="{% url 'password_change' %}" method="POST">
+          {% csrf_token %}
+          <span class="title">Change password</span>
+          {% if password_change_form.old_password %}
+          <div class="field">
+            {% render_field password_change_form.old_password placeholder='Old password' %}
+            {{ password_change_form.old_password.errors }}
+          </div>
+          <span class="line"></span>
+          {% endif %}
+          <div class="field">
+            {% render_field password_change_form.new_password1 placeholder='New password' %}
+            {{ password_change_form.password1.errors }}
+          </div>
+          <div class="field">
+            {% render_field password_change_form.new_password2 placeholder='Confirm new password' %}
+            {{ password_change_form.password2.errors }}
+          </div>
+          <span class="line"></span>
+          <div class="field field_button">
+            <input type="submit" class="btn" value="Change">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div><!-- class="profile__info" -->
+</section>
+{% endblock %}

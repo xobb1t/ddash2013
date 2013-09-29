@@ -7,7 +7,7 @@ $(document).ready(function(){
   (function(){
     var $edit_name = $('#js-edit-name');
 
-    $edit_name.on('keydown', 'input', function(){
+    $edit_name.on('keyup', 'input', function(){
       if ($(this).val() === '') {
         $edit_name.removeClass('edit');
       }
