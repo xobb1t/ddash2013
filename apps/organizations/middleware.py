@@ -7,6 +7,7 @@ class OrganizationMiddleware(object):
 
     def process_request(self, request):
         if request.subdomain is None:
+            request.organization = None
             return
         subdomain = request.subdomain
 
