@@ -36,7 +36,8 @@ img {
   position: relative;
   margin: 0 auto;
   min-height: 100%;
-  width: 940px;
+  padding: 0 30px;
+  min-width: 1000px;
   *zoom: 1;
 }
 
@@ -52,14 +53,64 @@ img {
 
 /*$container*/
 .container {
-  margin-bottom: 100px;
+  margin: 0 auto 100px;
+  width: 940px;
 
   .clear-style;
 }
 
 /*$head*/
 .header {
-  height: 100px;
+  position: relative;
+  margin: 0 auto 20px;
+  padding: 50px 0;
+  width: 940px;
+  text-align: center;
+}
+
+.logo {
+  display: block;
+  margin: 0 auto;
+  width: 486px;
+  height: 93px;
+  opacity: 0.85;
+  .transition(opacity 0.4s ease);
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.nav {
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  .btn {
+    display: block;
+    .border-radius(0 0 3px 3px);
+    font-size: 15px;
+    line-height: 30px;
+    text-decoration: none;
+    color: #e9e9e9;
+    .transition(padding 0.2s ease);
+
+    &:hover {
+      padding-top: 10px;
+    }
+  }
+}
+
+/*$footer*/
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 18px 0 15px;
+  .gradient(#414141, #525252, #414141);
+  text-align: center;
+  color: #e9e9e9;
 }
 
 /*$profile*/

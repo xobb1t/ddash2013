@@ -14,14 +14,17 @@
   <div class="page">
   {% block page %}
     <header class="header">
-      Header
+      <a href="/" class="logo"><img src="{{ STATIC_URL }}images/logo.png" alt=""></a>
+      <nav class="nav">
+        <a href="#?" class="btn">How to</a>
+      </nav>
     </header>
     <section class="container">
       {% block content %}
       {% endblock %}
     </section><!-- class="container" -->
     <footer class="footer">
-      Footer
+      Created by Alexander Aslanov, Dima Kukushkin, and Timofey Kukushkin for Django Dash 2013
     </footer><!-- class="footer" -->
   {% endblock %}
   </div><!-- class="page" -->
