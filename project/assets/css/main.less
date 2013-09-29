@@ -363,8 +363,7 @@ img {
 
 /*$welcome-text*/
 .welcome-text {
-  padding: 20px 0;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   font-size: 20px;
   line-height: 30px;
   text-align: right;
@@ -375,14 +374,24 @@ img {
 /*$steps*/
 .steps {
   margin-bottom: 50px;
-  padding: 0 50px 50px;
+  padding: 40px 50px 40px;
   background-color: #e7e7e7;
 
   .clear-style;
 
   .item {
-    width: 33.333%;
+    border-right: 1px solid #ddd;
+    width: 306px;
+    min-height: 150px;
     float: left;
+  }
+
+  .item_first {
+    margin-left: 10px;
+  }
+
+  .item_last {
+    border-right: none;
   }
 
   .title {
@@ -395,7 +404,8 @@ img {
 
   .num {
     font-size: 65px;
-    color: #444;
+    color: #777;
+    font-weight: 600;
   }
 
   .text {
