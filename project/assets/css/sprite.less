@@ -1,6 +1,8 @@
-/* glue: 0.2.9 hash: 6eecf558a3 */
+/* glue: 0.2.9 hash: a9fcf0d0f2 */
 .sprite-user,
-.sprite-ok {
+.sprite-remove,
+.sprite-ok,
+.sprite-clock {
 background: url(../images/sprite.png) no-repeat;
   display: inline-block;
 }
@@ -19,16 +21,44 @@ background: url(../images/sprite.png) no-repeat;
   height: 18px;
 }
 
-.sprite-ok {
+.sprite-remove {
   background-position: -25px -2px;
   width: 18px;
   height: 18px;
 }
-.sprite-ok-p() {
+.sprite-remove-p() {
   background-position: -25px -2px;
 }
-.sprite-ok-resize() {
+.sprite-remove-resize() {
   background-position: -25px -2px;
+  width: 18px;
+  height: 18px;
+}
+
+.sprite-ok {
+  background-position: -2px -24px;
+  width: 18px;
+  height: 18px;
+}
+.sprite-ok-p() {
+  background-position: -2px -24px;
+}
+.sprite-ok-resize() {
+  background-position: -2px -24px;
+  width: 18px;
+  height: 18px;
+}
+
+.sprite-clock {
+  background-position: -24px -24px;
+  width: 18px;
+  height: 18px;
+}
+.sprite-clock-p() {
+  background-position: -24px -24px;
+}
+.sprite-clock-resize() {
+  background-position: -24px -24px;
   width: 18px;
   height: 18px;
 }
