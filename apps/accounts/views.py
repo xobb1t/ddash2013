@@ -12,7 +12,7 @@ def activate(request):
     key = request.GET.get('key', '')
     user = Activation.objects.activate(key)
     if not user:
-        raise Http404
+        return redirect('accounts_user_detail')
     user.backend = 'accounts.backends.UserAuthenticationBackend'
     login(request, user)
     if not user.has_usable_password():
@@ -87,5 +87,3 @@ def user_edit(request, slug=None):
         'form': form,
         'user': user
     })
-
-

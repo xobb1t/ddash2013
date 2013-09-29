@@ -5,7 +5,7 @@ from .views import activate, login_view, set_password, user_detail, user_edit
 
 urlpatterns = patterns(
     '',
-    url(r'^/$', user_detail, name='accounts_user_detail'),
+    url(r'^$', user_detail, name='accounts_user_detail'),
     url(r'^user/(?P<slug>\w+)/$', user_detail,
         name='accounts_user_detail_for_slug'),
     url(r'^user/(?P<slug>\w+)/edit/$', user_edit,
