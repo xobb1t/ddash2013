@@ -55,7 +55,7 @@
             {% endif %}
           </td>
           <td class="ctrl">
-            <a href="#?" class="remove" data-tooltip="Remove the user"></a>
+            <a href="{% url 'accounts_user_delete' slug=object.login %}" class="remove" data-tooltip="Remove the user"></a>
           </td>
         </tr>
         {% endfor %}

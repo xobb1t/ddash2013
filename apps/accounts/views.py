@@ -4,7 +4,9 @@ from django.contrib.auth.forms import SetPasswordForm, PasswordChangeForm
 from django.http import Http404
 from django.shortcuts import redirect, render, get_object_or_404
 
-from .models import Activation
+from organizations.decorators import owner_required
+
+from .models import Activation, User
 from .forms import LoginForm, UserEditForm
 
 
@@ -87,3 +89,11 @@ def user_edit(request, slug=None):
         'form': form,
         'user': user
     })
+
+
+@owner_required
+def user_delete(request, slug):
+    organization = request.organization
+    user = get_object_or_404(organization.members.all(), login=slug)
+    user.delete()
+    return redirect('organizations_organization_detail')
