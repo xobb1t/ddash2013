@@ -76,6 +76,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
     'sitesutils.context_processors.site',
+    'organizations.context_processors.organization',
 )
 
 INSTALLED_APPS = (
