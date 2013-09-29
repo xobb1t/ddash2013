@@ -1,0 +1,15 @@
+{% extends 'base.html' %}{% load organizations %}
+
+{% block page_class %} page_404{% endblock %}
+
+{% block content %}
+  <div class="page404">
+    <img src="{{ STATIC_URL }}images/404.png">
+    <span class="text">
+      Page not found
+    </span>
+    <span class="return">
+      return to <a href="/">main page
+    </span>
+  </div>
+{% endblock %}

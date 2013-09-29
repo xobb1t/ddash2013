@@ -23,6 +23,10 @@ body {
 
 a {
   color: #3389ff;
+
+  &:hover {
+    color: #ff7800;
+  }
 }
 
 img {
@@ -78,6 +82,10 @@ img {
   &:hover {
     opacity: 1;
   }
+}
+
+.page_404 .logo {
+  display: none;
 }
 
 .nav {
@@ -405,5 +413,27 @@ img {
     line-height: 30px;
     text-align: center;
     font-size: 20px
+  }
+}
+
+/*$page404*/
+.page404 {
+  padding: 20px 0;
+  text-align: center;
+  color: #777;
+
+  .text,
+  .return {
+    padding-top: 50px;
+    display: block;
+    font-size: 40px;
+  }
+
+  .return {
+    padding-top: 10px;
+  }
+
+  a {
+    text-decoration: none;
   }
 }

@@ -1,0 +1,38 @@
+<!doctype html>{% load gears %}
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>500</title>
+  <meta name="viewport" content="width=device-width">
+  <link href="/static/images/favicon.ico" rel="shortcut icon" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/static/images/apple-touch-icon.png">
+  <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+  <div class="page page_404">
+    <header class="header">
+      <a href="/" class="logo"><img src="{{ STATIC_URL }}images/logo.png" alt=""></a>
+      <nav class="nav">
+        <a href="#?" class="link">Profile</a>
+        <a href="#?" class="link">Organization</a>
+        <a href="#?" class="link">Log out</a>
+        <a href="#?" class="btn">How to</a>
+      </nav>
+    </header>
+    <section class="container">
+      <div class="page404">
+        <img src="{{ STATIC_URL }}images/500.png">
+        <span class="text">
+          Oops! <br>Something went wrong. <br>We are investigating in reasons.
+        </span>
+        <span class="return">
+          return to <a href="/">main page
+        </span>
+      </div>
+    </section><!-- class="container" -->
+    <footer class="footer">
+      Created by Alexander Aslanov, Dima Kukushkin, and Timofey Kukushkin for Django Dash 2013
+    </footer><!-- class="footer" -->
+  </div><!-- class="page" -->
+</body>
+</html>

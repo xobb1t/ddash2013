@@ -11,7 +11,7 @@
   {% css_asset_tag "css/style.css" %}
 </head>
 <body>
-  <div class="page">
+  <div class="page{% block page_class %}{% endblock %}">
   {% block page %}
     <header class="header">
       <a href="/" class="logo"><img src="{{ STATIC_URL }}images/logo.png" alt=""></a>
