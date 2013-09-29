@@ -119,4 +119,9 @@ $(document).ready(function(){
     return false;
   });
 
+  $('#js-logo-form input').change(function(){
+    console.log('Hello');
+    $(this).closest('form').submit();
+  });
+
 });

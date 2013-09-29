@@ -73,3 +73,10 @@ class OrganizationForm(forms.ModelForm):
     class Meta:
         model = Organization
         fields = ['name']
+
+
+class OrganisationLogoForm(forms.ModelForm):
+
+    class Meta:
+        model = Organization
+        fields = ['logo']

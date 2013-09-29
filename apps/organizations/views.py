@@ -8,7 +8,7 @@ from accounts.utils import send_activation_email
 from .decorators import owner_required
 from .forms import (
     OrganizationRegistrationForm, OwnerRegistrationForm,
-    InviteForm, OrganizationForm,
+    InviteForm, OrganizationForm, OrganisationLogoForm
 )
 from .models import Organization
 
@@ -63,11 +63,19 @@ def organization_detail(request):
     members = organization.members.all()
     active_members_count = members.filter(is_active=True).count()
 
+    logo_edit_form = OrganisationLogoForm(data=request.POST or None,
+                                          files=request.FILES or None,
+                                          instance=organization,
+                                          prefix='logo')
+    if logo_edit_form.is_valid():
+        organization = logo_edit_form.save()
+
     return render(request, 'organizations/organization_detail.html', {
         'object_list': members,
         'active_members_count': active_members_count,
         'organization': organization,
         'invite_form': invite_form,
+        'logo_edit_form': logo_edit_form
     })
 
 

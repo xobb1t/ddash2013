@@ -4,22 +4,27 @@
 
 {% block content %}
 <section class="profile">
-  {% if organization.logo %}
   <aside class="profile__aside">
     <div class="profile__avatar">
       <span class="img">
-        <img src="{% thumbnail organization.logo 274x274 crop %}" alt="{{ organization.name }}">
+        <img src="{% thumbnail organization.logo 274x274 crop %}" alt="">
       </span>
+      <div class="btn" data-tooltip="Upload avatar">
+        <i class="sprite-edit"></i>
+        <form action="." method="POST" id="js-logo-form" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ logo_edit_form.logo }}
+        </form>
+      </div>
     </div>
   </aside>
-  {% endif %}
   <div class="profile__info">
     <section class="profile__name" id="js-edit-name">
       {% organization_edit_form %}
     </section>
 
     <div class="profile__id">
-      OpenID identity: {% url 'openid-provider-xrds' subdomain=organization.slug %}
+      OpenID identity: {% url 'openid-provider-xrds' %}
     </div>
 
     <section class="users">
