@@ -19,7 +19,7 @@ $(document).ready(function(){
 
 // tooltips
   (function(){
-    var tooltip = $('<span class="tooltip">dsfdsffs</span>');
+    var tooltip = $('<span class="tooltip hidden"></span>');
 
     $('body').append(tooltip);
 
@@ -33,6 +33,8 @@ $(document).ready(function(){
 
       tooltip.html(tooltip_str);
 
+      tooltip.removeClass('hidden');
+
       var width = tooltip.innerWidth(),
           width_this = $this.innerWidth(),
           height = tooltip.innerHeight();
@@ -42,9 +44,7 @@ $(document).ready(function(){
         'top': offset.top - height - 10
       })
     }, function(){
-      tooltip.css({
-        'left': -9000000
-      })
+      tooltip.addClass('hidden');
     });
 
   }());

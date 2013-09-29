@@ -159,6 +159,7 @@ img {
 
 /*$users*/
 .users {
+  margin-bottom: 50px;
 
   table {
     width: 100%;
@@ -197,13 +198,18 @@ img {
 /*$tooltip*/
 .tooltip {
   position: absolute;
-  left: 20%;
-  top: 30%;
+  z-index: 2000;
   .border-radius(3px);
   padding: 5px 8px 5px;
   .gradient(#414141, #525252, #414141);
   color: #fff;
   font-size: 13px;
+  .transition(opacity 0.4s ease);
+  opacity: 1;
+
+  &.hidden {
+    opacity: 0;
+  }
 
   &:after {
     position: absolute;
@@ -217,5 +223,6 @@ img {
     border-top: 8px solid #414141;
     content: '';
   }
+
 }
 
