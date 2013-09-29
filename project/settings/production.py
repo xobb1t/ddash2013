@@ -20,12 +20,8 @@ TEMPLATE_LOADERS = (
 PREPEND_WWW = False
 
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
-if EMAIL_HOST_PASSWORD:
-    EMAIL_HOST = 'smtp.yandex.ru'
-    EMAIL_PORT = 465
-    EMAIL_HOST_USER = 'noreply@singlepointhq.com'
-    EMAIL_USE_TLS = True
-    EMAIL_USE_SSL = True
-    DEFAULT_FROM_EMAIL = 'noreply@singlepointhq.com'
+EMAIL_HOST = 'mail.trilan.ru'
+EMAIL_HOST_USER = 'noanswer@trilan.ru'
+DEFAULT_FROM_EMAIL = 'noanswer@trilan.ru'
 
 ALLOWED_HOSTS = ['*.singlepointhq.com']
