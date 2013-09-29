@@ -26,10 +26,9 @@ $(document).ready(function(){
 
     $edit_name.on('keyup', 'input', function(){
       if ($(this).val()) {
-        $edit_name.addClass('edit');
-      }
-      else {
         $edit_name.removeClass('edit');
+      } else {
+        $edit_name.addClass('edit');
       }
     });
 
