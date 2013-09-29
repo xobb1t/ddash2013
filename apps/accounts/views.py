@@ -4,7 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import SetPasswordForm
 from django.http import Http404
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 
 from .models import Activation, User
 from .forms import LoginForm
@@ -56,7 +56,8 @@ def profile(request, slug=None):
     if slug:
         if not (user.is_owner and user.organization == organization):
             raise Http404
-        user = User.objects.get(slug=slug)
+        members = organization.members.all()
+        user = get_object_or_404(members, login=slug)
     return render(request, 'accounts/profile.html', {
         'user': user,
         'organization': organization
