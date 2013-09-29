@@ -120,7 +120,6 @@ $(document).ready(function(){
   });
 
   $('#js-logo-form input').change(function(){
-    console.log('Hello');
     $(this).closest('form').submit();
   });
 
