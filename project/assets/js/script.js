@@ -49,4 +49,16 @@ $(document).ready(function(){
 
   }());
 
+// $change-password
+  (function(){
+    var change_password = $('#change-password'),
+        form = $('.fpassword', change_password);
+
+    $('.open', change_password).click(function(){
+      $(this).hide();
+      $('.fpassword', change_password).removeClass('hide');
+      return false;
+    });
+  }());
+
 });
