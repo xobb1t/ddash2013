@@ -1,0 +1,8 @@
+---
+
+- name: upload gunicorn config
+  copy: src=gunicorn.conf dest=/home/singlepoint/etc/supervisord/gunicorn.conf owner=singlepoint group=singlepoint mode=0600
+
+- name: restart processes
+  command: .env/bin/supervisorctl restart all chdir=/home/singlepoint
+  sudo_user: singlepoint

@@ -1,0 +1,12 @@
+---
+- hosts: all
+  sudo: true
+
+  roles:
+  - base
+  - git
+  - python
+  - node
+  - nginx
+  - postgresql
+  - site-roles/deploy

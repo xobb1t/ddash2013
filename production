@@ -1,0 +1,4 @@
+singlepoint ansible_ssh_host=singlepoint.com ansible_ssh_user=root
+
+[singlepoint]
+singlepoint

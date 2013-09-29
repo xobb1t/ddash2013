@@ -1,0 +1,4 @@
+---
+dependencies:
+  - {role: project, name: singlepoint}
+  - {role: nginx_site, name: singlepoint, proxy_port: 8888}
