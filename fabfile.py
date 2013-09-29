@@ -42,7 +42,8 @@ def syncdb():
 
 @task
 def restart():
-    run('sudo supervisorctl restart site')
+    run('supervisorctl reload')
+    run('supervisorctl restart gunicorn')
 
 
 @task
