@@ -173,13 +173,22 @@ img {
     height: auto;
     cursor: pointer;
     opacity: 0.5;
+    font-size: 0;
     .transition(opacity 0.5s ease);
+
+    form {
+      height: 0;
+      left: 0;
+      position: absolute;
+      top: 40px;
+      width: 0;
+    }
 
 
     input {
       position: absolute;
-      right: 0;
-      top: 0;
+      right: -100px;
+      top: -100px;
       font-size: 200px;
       .opacity(0);
       cursor: pointer;
