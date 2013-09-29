@@ -1,4 +1,6 @@
-{% extends "base.html" %}{% load widget_tweaks %}
+{% extends "base.html" %}
+
+{% load widget_tweaks %}
 
 {% block page %}
   <div class="flogin flogin_center">
@@ -8,7 +10,8 @@
     </div>
     <div class="frecovery__form">
       <dev class="text">
-        You successfully logged out!
+        You successfully logged out!<br>
+        <a href="http://{{ site.domain }}{% url 'index' %}">Main page</a>
       </dev>
     </div>
   </div>

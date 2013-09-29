@@ -67,7 +67,7 @@ def user_detail(request, slug=None):
     if password_change_form.is_valid():
         password_change_form.save()
         messages.add_message(request, messages.INFO,
-                             _(u'Password successfully changed'))
+                             _(u'Password successfully changed.'))
 
     return render(request, 'accounts/user_detail.html', {
         'user': user,
