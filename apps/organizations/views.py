@@ -43,7 +43,7 @@ def check_organization_slug(request):
     if slug is None:
         raise Http404
     data = {
-        'allowed': not Organization.objects.filter(slug=slug).exists()
+        'allowed': not Organization.objects.filter(slug__iexact=slug).exists()
     }
     return HttpResponse(json.dumps(data), mimetype='application/json')
 
