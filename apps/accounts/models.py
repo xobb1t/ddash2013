@@ -59,7 +59,9 @@ class Activation(models.Model):
 def create_openid_on_user_create(sender, instance, created, **kwargs):
     if created:
         OpenID.objects.get_or_create(user=instance, defaults={
-            'default': True, 'openid': instance.login
+            'default': True, 'openid': u'{}.{}'.format(
+                instance.organization.slug, instance.login
+            )
         })
 
 post_save.connect(create_openid_on_user_create, sender=User)
