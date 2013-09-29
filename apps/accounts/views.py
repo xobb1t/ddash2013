@@ -38,7 +38,7 @@ def login_view(request):
 
 @login_required
 def set_password(request):
-    if user.has_usable_password():
+    if request.user.has_usable_password():
         raise Http404
     form = SetPasswordForm(request.user, request.POST or None)
     if form.is_valid():
