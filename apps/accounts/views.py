@@ -8,7 +8,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 
 from organizations.decorators import owner_required
 
-from .models import Activation, User
+from .models import Activation
 from .forms import LoginForm, UserEditForm
 
 

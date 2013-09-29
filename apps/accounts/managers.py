@@ -41,7 +41,6 @@ class UserManager(BaseUserManager):
 
     def _create_user(self, email, password, is_superuser, **extra_fields):
 
-        now = timezone.now()
         if not email:
             raise ValueError('The given email must be set')
         email = self.normalize_email(email)
