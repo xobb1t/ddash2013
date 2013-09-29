@@ -12,8 +12,7 @@
     </aside>
 
     <div class="profile__info">
-
-      <div class="profile__name" id="js-edit-name">
+      <section class="profile__name" id="js-edit-name">
         <form action="#?">
           <div class="field">
             <input type="text" value="Company name" placeholder="Company name">
@@ -22,9 +21,9 @@
             <input type="submit" value="Send" class="btn">
           </div>
         </form>
-      </div>
+      </section>
 
-      <div class="profile__stats">
+<!--       <section class="profile__stats">
         <div class="item">
           <span class="title">
             active users
@@ -37,12 +36,13 @@
           </span>
           <span class="value">85</span>
         </div>
-      </div>
+      </section> -->
 
-      <div class="users">
+      <section class="users">
         <table>
           <tr>
             <th class="num">#</th>
+            <th>Full name</th>
             <th>Login</th>
             <th>Email</th>
             <th class="ctrl">Status</th>
@@ -50,6 +50,7 @@
           </tr>
           <tr>
             <td class="num">1.</td>
+            <td>Alexander V.</td>
             <td>
               <a href="#?">Trolev</a>
             </td>
@@ -65,6 +66,7 @@
           </tr>
           <tr>
             <td class="num">2.</td>
+            <td></td>
             <td>
               <a href="#?">BananNn</a>
             </td>
@@ -80,6 +82,7 @@
           </tr>
           <tr>
             <td class="num">3.</td>
+            <td>Bannan V.</td>
             <td>
               <a href="#?">Kykys</a>
             </td>
@@ -94,11 +97,45 @@
             </td>
           </tr>
         </table>
+      </section><!-- class="users" -->
 
-      </div>
+      <section class="finvite small-field">
+        <form action="#?">
+          <span class="title">Invite user</span>
+          <div class="field">
+            <input type="text" placeholder="Full name">
+          </div>
+          <div class="field field-column left">
+            <input type="text" placeholder="Login">
+          </div>
+          <div class="field field-column right">
+            <input type="text" placeholder="Email">
+          </div>
+          <div class="field clear">
+            <input type="submit" value="Invite" class="btn">
+          </div>
+        </form>
+      </section>
 
 
-    </div>
+      <section class="profile__stats profile__stats_bottom">
+        <div class="item">
+          <span class="title">
+            active users
+          </span>
+          <span class="value">16</span>
+        </div>
+        <div class="item">
+          <span class="title">
+            all users
+          </span>
+          <span class="value">85</span>
+        </div>
+      </section>
+
+      <span class="clear"></span>
+
+    </div><!-- class="profile__info" -->
 
 
 
