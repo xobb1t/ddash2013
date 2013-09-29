@@ -1,5 +1,9 @@
 ---
 
+- name: install mercurial inside venv
+  pip: name=Mercurial state=present virtualenv=/home/singlepoint/.env
+  sudo_user: singlepoint
+
 - name: upload gunicorn config
   copy: src=gunicorn.conf dest=/home/singlepoint/etc/supervisord/gunicorn.conf owner=singlepoint group=singlepoint mode=0600
 
