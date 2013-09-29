@@ -87,6 +87,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'django_gears',
+    'easy_thumbnails',
     'openid_provider',
     'sitesutils',
     'south',
