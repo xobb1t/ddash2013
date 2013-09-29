@@ -69,8 +69,11 @@ def organization_detail(request):
         organization = edit_form.save()
 
     members = organization.members.all()
+    active_members_count = members.filter(is_active=True).count()
+
     return render(request, 'organizations/organization_detail.html', {
         'object_list': members,
+        'active_members_count': active_members_count,
         'organization': organization,
         'invite_form': invite_form,
         'edit_form': edit_form

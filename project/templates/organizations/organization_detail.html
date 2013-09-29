@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% load thumbnail widget_tweaks %}
+
+{% block content %}
+<section class="profile">
+  {% if organization.logo %}
+  <aside class="profile__aside">
+    <div class="profile__avatar">
+      <span class="img">
+        <img src="{% thumbnail organization.logo 274x274 crop %}" alt="{{ organization.name }}">
+      </span>
+    </div>
+  </aside>
+  {% endif %}
+  <div class="profile__info">
+    <section class="profile__name" id="js-edit-name">
+      <form action="." method="POST">
+        {% csrf_token %}
+        <div class="field">
+          {% render_field edit_form.name placeholder='Company name' %}
+        </div>
+        <div class="button">
+          <input type="submit" value="Save" class="btn">
+        </div>
+      </form>
+    </section>
+
+    <div class="profile__id">
+      OpenID identity: http://{{ organization.slug }}.{{ site.domain }}{% url 'openid-provider-xrds' %}
+    </div>
+
+    <section class="users">
+      <table>
+        <tr>
+          <th class="num">#</th>
+          <th>Full name</th>
+          <th>Login</th>
+          <th>Email</th>
+          <th class="ctrl">Status</th>
+          <th class="ctrl">Remove</th>
+        </tr>
+        {% for object in object_list %}
+        <tr>
+          <td class="num">{{ forloop.counter }}.</td>
+          <td>{{ object.full_name }}</td>
+          <td>
+            <a href="{{ object.get_absolute_url }}">{{ object.login }}</a>
+          </td>
+          <td>
+            {{ object.email }}
+          </td>
+          <td class="ctrl">
+            {% if object.is_active %}
+            <i class="ok"></i>
+            {% else %}
+            <i class="clock" data-tooltip="Inactive user"></i>
+            {% endif %}
+          </td>
+          <td class="ctrl">
+            <a href="#?" class="remove" data-tooltip="Remove the user"></a>
+          </td>
+        </tr>
+        {% endfor %}
+      </table>
+    </section><!-- class="users" -->
+
+    <section class="finvite small-field">
+      <form action="." method="POST">
+        {% csrf_token %}
+        <span class="title">Invite user</span>
+        <div class="field">
+          {% render_field invite_form.full_name placeholder='Full name' %}
+        </div>
+        <div class="field field-column left">
+          {% render_field invite_form.login placeholder='Login' %}
+        </div>
+        <div class="field field-column right">
+          {% render_field invite_form.email placeholder='Email' %}
+        </div>
+        <div class="field clear">
+          <input type="submit" value="Invite" class="btn">
+        </div>
+      </form>
+    </section>
+
+
+    <section class="profile__stats">
+      <div class="item">
+        <span class="title">
+          active users
+        </span>
+        <span class="value">{{ active_members_count }}</span>
+      </div>
+      <div class="item">
+        <span class="title">
+          all users
+        </span>
+        <span class="value">{{ object_list.count }}</span>
+      </div>
+    </section>
+
+    <span class="clear"></span>
+
+  </div><!-- class="profile__info" -->
+</section>
+{% endblock %}
