@@ -2,6 +2,11 @@
 - hosts: all
   sudo: true
 
+  pre_tasks:
+    - apt: update_cache=yes cache_valid_time=3600
+    - name: install redis
+      apt: pkg=redis-server state=present
+
   roles:
   - base
   - git
