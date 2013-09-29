@@ -81,4 +81,5 @@ $(document).ready(function(){
     });
   }
   create_ajax_form($('#js-edit-name'));
+  create_ajax_form($('#registration-form-wrapper'));
 });

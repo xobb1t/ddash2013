@@ -1,45 +1,39 @@
-{% extends 'base.html' %}
-
 {% load widget_tweaks %}
-
-{% block content %}
-{{ organization_form.errors }}
-{{ user_form.errors }}
-<div class="freg small-field">
-  <form action="." method="POST">
-    {% csrf_token %}
-    <div class="field field-login">
-      {% render_field organization_form.name placeholder='Company name' %}
+{{ organization_form.non_field_errors }}
+{{ user_form.non_field_errors }}
+<span class="title">Sign-up now</span>
+<form action="{% url 'organizations_registration' %}" method="POST">
+  {% csrf_token %}
+  <div class="field field-login{% if organization_form.name.errors %} error{% endif %}">
+    {% render_field organization_form.name placeholder='Company name' %}
+  </div>
+  <div class="field field-domain">
+    <i class="ok"></i>
+    {% render_field organization_form.slug placeholder='URL' %}
+    <span class="domain">.singlepointhq.com</span>
+  </div>
+  <span class="line"></span>
+  <div class="field{% if user_form.full_name.errors %} error{% endif %}">
+    {% render_field user_form.full_name placeholder='Full name' %}
+  </div>
+  <div class="fields-column left">
+    <div class="field{% if user_form.login.errors %} error{% endif %}">
+      {% render_field user_form.login placeholder='Login' %}
     </div>
-    <div class="field field-domain success">
-      <i class="ok"></i>
-      {% render_field organization_form.slug placeholder='URL' %}
-      <span class="domain">.singlepointhq.com</span>
+    <div class="field{% if user_form.email.errors %} error{% endif %}">
+      {% render_field user_form.email placeholder='Email' %}
     </div>
-    <span class="line"></span>
-    <div class="field ">
-      {% render_field user_form.full_name placeholder='Full name' %}
+  </div>
+  <div class="fields-column right">
+    <div class="field{% if user_form.password1.errors %} error{% endif %}">
+      {% render_field user_form.password1 placeholder='Password' %}
     </div>
-    <div class="fields-column left">
-      <div class="field ">
-        {% render_field user_form.login placeholder='Login' %}
-      </div>
-      <div class="field">
-        {% render_field user_form.email placeholder='Email' %}
-      </div>
+    <div class="field{% if user_form.password2.errors %} error{% endif %}">
+      {% render_field user_form.password2 placeholder='Confirm password' %}
     </div>
-    <div class="fields-column right">
-      <div class="field ">
-        {% render_field user_form.password1 placeholder='Password' %}
-      </div>
-      <div class="field">
-        {% render_field user_form.password2 placeholder='Confirm password' %}
-      </div>
-    </div>
-    <span class="line"></span>
-    <div class="field">
-      <input type="submit" value="Send" class="btn">
-    </div>
-  </form>
-</div>
-{% endblock %}
+  </div>
+  <span class="line"></span>
+  <div class="field">
+    <input type="submit" value="Sign-up" class="btn">
+  </div>
+</form>
