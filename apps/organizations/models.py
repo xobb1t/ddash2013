@@ -6,6 +6,8 @@ class Organization(models.Model):
 
     name = models.CharField(_(u'name'), max_length=255)
     slug = models.SlugField(_(u'slug'), max_length=255, unique=True)
+    logo = models.ImageField(_(u'logo'), upload_to='logos', blank=True,
+                             null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
