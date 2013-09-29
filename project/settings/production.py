@@ -8,7 +8,7 @@ DATABASES = {
     }
 }
 
-PUBLIC_ROOT = os.path.join(os.sep, 'var', 'www', 'project', 'public')
+PUBLIC_ROOT = os.path.join(os.sep, 'var', 'www', 'singlepoint', 'public')
 STATIC_ROOT = os.path.join(PUBLIC_ROOT, 'static')
 MEDIA_ROOT = os.path.join(PUBLIC_ROOT, 'media')
 
