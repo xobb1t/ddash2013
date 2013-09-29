@@ -5,14 +5,18 @@ $(document).ready(function(){
 
 // edit name
   (function(){
-    var $edit_name = $('#js-edit-name'),
-        $field = $('.field input', $edit_name);
+    var $edit_name = $('#js-edit-name');
 
-    $field.focus(function(){
-      $edit_name.addClass('edit');
+    $edit_name.on('keydown', 'input', function(){
+      if ($(this).val() === '') {
+        $edit_name.removeClass('edit');
+      }
+      else {
+        $edit_name.addClass('edit');
+      }
     });
 
-    $field.blur(function(){
+    $edit_name.on('blur', 'input', function(){
       $edit_name.removeClass('edit');
     });
   }());
@@ -61,4 +65,18 @@ $(document).ready(function(){
     });
   }());
 
+  function create_ajax_form(block){
+    block.on('submit', 'form', function(){
+      $.ajax({
+        type: $(this).attr('method'),
+        url: $(this).attr('action'),
+        data: $(this).serialize(),
+        success: function(data) {
+          block.html(data);
+        }
+      });
+      return false;
+    });
+  }
+  create_ajax_form($('#js-edit-name'));
 });
