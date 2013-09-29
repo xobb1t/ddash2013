@@ -7,3 +7,4 @@ psycopg2==2.5.1
 django-celery==3.0.17
 celery==3.0.19
 pytz==2013b
+django-celery-email==1.0.3

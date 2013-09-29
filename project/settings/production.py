@@ -25,3 +25,10 @@ EMAIL_HOST_USER = 'noanswer@trilan.ru'
 DEFAULT_FROM_EMAIL = 'noanswer@trilan.ru'
 
 ALLOWED_HOSTS = ['.singlepointhq.com']
+
+
+BROKER_URL = 'redis://localhost:6379/0'
+INSTALLED_APPS += ("djcelery_email",)
+EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
+CELERYD_CONCURRENCY = 2
+CELERYD_MAX_TASKS_PER_CHILD = 100
