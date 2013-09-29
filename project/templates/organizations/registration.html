@@ -7,8 +7,8 @@
   <div class="field field-login{% if organization_form.name.errors %} error{% endif %}">
     {% render_field organization_form.name placeholder='Company name' %}
   </div>
-  <div class="field field-domain {% if organization_form.slug.errors %}error{% else %}success{% endif %}">
-    <i class="ok"></i>
+  <div class="field field-domain{% if organization_form.slug.errors %}error{% endif %}" id="js-field-domain">
+    <i class="ok hide"></i>
     {% render_field organization_form.slug placeholder='URL' %}
     <span class="domain">.singlepointhq.com</span>
   </div>
