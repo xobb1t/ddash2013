@@ -57,7 +57,8 @@ def user_detail(request, slug=None):
         if not user.is_owner:
             raise Http404
         user = get_object_or_404(organization.members.all(), login=slug)
-        password_change_form = SetPasswordForm(user, request.POST or None)
+        if not user.is_owner:
+            password_change_form = SetPasswordForm(user, request.POST or None)
 
     if password_change_form.is_valid():
         password_change_form.save()

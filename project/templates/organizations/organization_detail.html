@@ -37,7 +37,7 @@
           <td class="num">{{ forloop.counter }}.</td>
           <td>{{ object.full_name }}</td>
           <td>
-            <a href="{% url 'accounts_user_detail_for_slug' slug=object.login subdomain=organization.slug %}">{{ object.login }}</a>
+            <a href="{% url 'accounts_user_detail_for_slug' slug=object.login %}">{{ object.login }}</a>
           </td>
           <td>
             {{ object.email }}
