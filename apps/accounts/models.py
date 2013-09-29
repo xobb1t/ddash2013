@@ -1,7 +1,10 @@
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
 from django.db import models
+from django.db.models.signals import post_save
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+
+from openid_provider.models import OpenID
 
 from .managers import UserManager, ActivationManager
 
@@ -51,3 +54,12 @@ class Activation(models.Model):
 
     def is_expired(self):
         return timezone.now() > self.expires_at
+
+
+def create_openid_on_user_create(sender, instance, created, **kwargs):
+    if created:
+        OpenID.objects.get_or_create(user=instance, defaults={
+            'default': True, 'openid': instance.login
+        })
+
+post_save.connect(create_openid_on_user_create, sender=User)
