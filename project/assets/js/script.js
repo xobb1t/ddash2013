@@ -25,11 +25,11 @@ $(document).ready(function(){
     var $edit_name = $('#js-edit-name');
 
     $edit_name.on('keyup', 'input', function(){
-      if ($(this).val() === '') {
-        $edit_name.removeClass('edit');
+      if ($(this).val()) {
+        $edit_name.addClass('edit');
       }
       else {
-        $edit_name.addClass('edit');
+        $edit_name.removeClass('edit');
       }
     });
 
