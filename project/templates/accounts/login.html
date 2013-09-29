@@ -14,13 +14,14 @@
   <div class="flogin__form flogin__form_type">
     <form action="" method="POST">
       {% csrf_token %}
+      {{ form.non_field_errors }}
       <div class="field{% if form.username.errors or form.non_field_errors %} error{% endif %}">
         {% render_field form.username placeholder='Email' %}
       </div>
       <div class="field{% if form.password.errors or form.non_field_errors %} error{% endif %}">
         {% render_field form.password placeholder='Password' %}
       </div>
-      {{ form.non_field_errors }}
+      
       <a href="{% url 'password_reset' %}" class="recovery">Recover password</a>
       <div class="button field">
         <input type="submit" value="Go" class="btn">
