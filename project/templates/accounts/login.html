@@ -20,10 +20,12 @@
       <div class="field{% if form.password.errors or form.non_field_errors %} error{% endif %}">
         {% render_field form.password placeholder='Password' %}
       </div>
-      <div class="button">
-        <input type="submit" value="Go">
-      </div>
       {{ form.non_field_errors }}
+      <a href="#?" class="recovery">Recover password</a>
+      <div class="button field">
+        <input type="submit" value="Go" class="btn">
+      </div>
+      <span class="clear"></span>
     </form>
   </div>
 </div>
