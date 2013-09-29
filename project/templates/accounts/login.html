@@ -3,14 +3,16 @@
 {% load widget_tweaks thumbnail %}
 
 {% block page %}
-{% if organization.logo %}
-  <img src="{% thumbnail organization.logo 250x250 crop %}">
-{% endif %}
 <div class="flogin flogin_center">
   <div class="flogin__head">
     Log in
     <i class="icon"></i>
   </div>
+  {% if organization.logo %}
+    <div class="flogin__avatar">
+        <img src="{% thumbnail organization.logo 200x200 crop %}">
+    </div>
+  {% endif %}
   <div class="flogin__form flogin__form_type">
     <form action="" method="POST">
       {% csrf_token %}
