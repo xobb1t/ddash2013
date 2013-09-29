@@ -6,9 +6,9 @@ Clana banana DjangoDash project
 singlepoint is open id server hosting.
 Setup is simple
 
-# Clone repo
-# Setup development requirements ``(pip install -r requirements/development.txt)``
-# ``./manage.py syncdb --migrate``
-# Enjoy!
+1. Clone repo
+2. Setup development requirements ``(pip install -r requirements/development.txt)``
+3. ``./manage.py syncdb --migrate``
+4.  Enjoy!
 
 All deploy in ``deploy`` branch
