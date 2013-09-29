@@ -19,7 +19,11 @@
 
     <ul class="profile__list">
       <li class="item">
-        OpenID: {% url 'openid-provider-identity' id=user.get_openid %}
+        OpenID:
+        {% for openid in user.openid_set.all %}
+        {% if not forloop.first %}<br>{% endif %}
+        {% url 'openid-provider-identity' id=openid.openid %}
+        {% endfor %}
       </li>
       <li class="item">
         Login: {{ user.login }}
