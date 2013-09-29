@@ -24,4 +24,4 @@ EMAIL_HOST = 'mail.trilan.ru'
 EMAIL_HOST_USER = 'noanswer@trilan.ru'
 DEFAULT_FROM_EMAIL = 'noanswer@trilan.ru'
 
-ALLOWED_HOSTS = ['*.singlepointhq.com']
+ALLOWED_HOSTS = ['.singlepointhq.com']
