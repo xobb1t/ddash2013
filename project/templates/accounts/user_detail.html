@@ -35,11 +35,13 @@
         Organization: {{ user.organization.name }}
       </li>
     </ul>
-
+    {% for message in messages %}
+    {{ message }}<br>
+    {% endfor %}
     <div class="profile__password" id="change-password">
-      <a class="btn open">Change password</a>
-      <div class="fpassword small-field hide">
-        <form action="{% url 'password_change' %}" method="POST">
+      <a class="btn open{% if password_change_form.errors %} hide{% endif %}">Change password</a>
+      <div class="fpassword small-field{% if not password_change_form.errors %} hide{% endif %}">
+        <form action="." method="POST">
           {% csrf_token %}
           <span class="title">Change password</span>
           {% if password_change_form.old_password %}

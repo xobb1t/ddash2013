@@ -1,7 +1,9 @@
+from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import SetPasswordForm, PasswordChangeForm
 from django.http import Http404
+from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import redirect, render, get_object_or_404
 
 from organizations.decorators import owner_required
@@ -64,6 +66,8 @@ def user_detail(request, slug=None):
 
     if password_change_form.is_valid():
         password_change_form.save()
+        messages.add_message(request, messages.INFO,
+                             _(u'Password successfully changed'))
 
     return render(request, 'accounts/user_detail.html', {
         'user': user,
