@@ -11,7 +11,7 @@
       </span>
       <div class="btn" data-tooltip="Upload avatar">
         <i class="sprite-edit"></i>
-        <form action="." method="POST" id="js-logo-form" enctype="multipart/form-data">
+        <form action="{% url 'organizations_organization_edit_logo' %}" method="POST" id="js-logo-form" enctype="multipart/form-data">
           {% csrf_token %}
           {{ logo_edit_form.logo }}
         </form>

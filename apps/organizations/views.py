@@ -53,22 +53,16 @@ def organization_detail(request):
     organization = request.organization
 
     invite_form = InviteForm(data=request.POST or None,
-                             organization=organization,
-                             prefix='invite')
+                             organization=organization)
     if invite_form.is_valid():
         user = invite_form.save()
         activation = user.make_activation()
         send_activation_email(request, activation)
 
+
     members = organization.members.all()
     active_members_count = members.filter(is_active=True).count()
-
-    logo_edit_form = OrganisationLogoForm(data=request.POST or None,
-                                          files=request.FILES or None,
-                                          instance=organization,
-                                          prefix='logo')
-    if logo_edit_form.is_valid():
-        organization = logo_edit_form.save()
+    logo_edit_form = OrganisationLogoForm()
 
     return render(request, 'organizations/organization_detail.html', {
         'object_list': members,
@@ -77,6 +71,16 @@ def organization_detail(request):
         'invite_form': invite_form,
         'logo_edit_form': logo_edit_form
     })
+
+
+def organization_edit_logo(request):
+    form = OrganisationLogoForm(data=request.POST,
+                                files=request.FILES,
+                                instance=request.organization)
+    if form.is_valid():
+        form.save()
+    return redirect(organization_detail)
+
 
 
 @owner_required
