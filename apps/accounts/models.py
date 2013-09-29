@@ -42,6 +42,9 @@ class User(AbstractBaseUser, PermissionsMixin):
             return
         return self.activations.make_activation(self)
 
+    def get_openid(self):
+        return u'{}.{}'.format(self.organization.slug, self.login)
+
 
 class Activation(models.Model):
 
