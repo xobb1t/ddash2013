@@ -8,7 +8,7 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    ('Dima Kukushkin', 'dima@kukushkin.me'),
+    ('Dima Kukushkin', 'kukushkin@trilan.ru'),
     ('Tima Kukushkin', 'tima@kukushkin.me'),
     ('Alex Trolev', 'trolev@gmail.com'),
 )
