@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load gravatar accounts widget_tweaks %}
+{% load gravatar accounts widget_tweaks subdomainurls %}
 
 {% block content %}
 <section class="profile">
@@ -19,7 +19,7 @@
 
     <ul class="profile__list">
       <li class="item">
-        OpenID: http://{{ organization.slug }}.{{ site.domain }}{% url 'openid-provider-identity' user.login %}
+        OpenID: {% url 'openid-provider-identity' id=user.login %}
       </li>
       <li class="item">
         Login: {{ user.login }}
