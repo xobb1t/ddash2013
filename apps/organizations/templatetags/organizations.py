@@ -20,6 +20,7 @@ def organization_edit_form(context):
 @register.inclusion_tag('organizations/registration.html')
 def registration_form():
     return {
-        'organization_form': OrganizationRegistrationForm(prefix='organization'),
+        'organization_form': OrganizationRegistrationForm(
+            prefix='organization'),
         'user_form': OwnerRegistrationForm(prefix='owner'),
     }

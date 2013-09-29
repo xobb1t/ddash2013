@@ -88,7 +88,7 @@ def user_edit(request, slug=None):
 
     form = UserEditForm(request.POST or None, instance=user)
     if form.is_valid():
-       form.save()
+        form.save()
 
     return render(request, 'accounts/user_edit.html', {
         'form': form,

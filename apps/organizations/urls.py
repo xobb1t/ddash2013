@@ -12,5 +12,5 @@ urlpatterns = patterns(
         name='organizations_check_slug'),
     url(r'^registration/success/$', TemplateView.as_view(
         template_name='organizations/registration_success.html',
-    ), name='organizations_registration_success'),
+        ), name='organizations_registration_success'),
 )

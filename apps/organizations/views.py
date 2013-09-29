@@ -59,7 +59,6 @@ def organization_detail(request):
         activation = user.make_activation()
         send_activation_email(request, activation)
 
-
     members = organization.members.all()
     active_members_count = members.filter(is_active=True).count()
     logo_edit_form = OrganisationLogoForm()
@@ -80,7 +79,6 @@ def organization_edit_logo(request):
     if form.is_valid():
         form.save()
     return redirect(organization_detail)
-
 
 
 @owner_required
