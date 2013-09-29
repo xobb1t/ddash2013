@@ -67,6 +67,8 @@ $(document).ready(function(){
 
   function create_ajax_form(block){
     block.on('submit', 'form', function(){
+      if ($('.field input', block).val() === '')
+        return false;
       $.ajax({
         type: $(this).attr('method'),
         url: $(this).attr('action'),
