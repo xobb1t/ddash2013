@@ -49,36 +49,29 @@ def check_organization_slug(request):
 
 
 @owner_required
-def member_list(request):
+def organization_detail(request):
     if not request.user.is_owner:
         raise Http404
     organization = request.organization
-    qs = organization.members.all()
-    return render(request, 'organizations/member_list.html', {
-        'object_list': qs, 'organization': organization,
-    })
 
-
-@owner_required
-def invite_member(request):
-    form = InviteForm(request.POST or None, organization=request.organization)
-    if form.is_valid():
-        user = form.save()
+    invite_form = InviteForm(data=request.POST or None,
+                             organization=organization,
+                             prefix='invite')
+    if invite_form.is_valid():
+        user = invite_form.save()
         activation = user.make_activation()
         send_activation_email(request, activation)
-        return redirect('private_member_list')
-    return render(request, 'organizations/member_invite.html', {
-        'form': form
-    })
 
+    edit_form = OrganizationForm(data=request.POST or None,
+                                 instance=organization,
+                                 prefix='edit')
+    if edit_form.is_valid():
+        organization = edit_form.save()
 
-@owner_required
-def organization_edit(request):
-    form = OrganizationForm(data=request.POST or None,
-                            instance=request.organization)
-    if form.is_valid():
-        form.save()
-        return redirect('organizations_organization_edit')
-    return render(request, 'organizations/tags/organization_edit.html', {
-        'form': form
+    members = organization.members.all()
+    return render(request, 'organizations/organization_detail.html', {
+        'object_list': members,
+        'organization': organization,
+        'invite_form': invite_form,
+        'edit_form': edit_form
     })

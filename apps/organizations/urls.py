@@ -6,10 +6,6 @@ from . import views
 
 urlpatterns = patterns(
     '',
-    url(r'^$', views.member_list,
-        name='organizations_member_list'),
-    url(r'^edit/$', views.member_list,
-        name='organizations_organization_edit'),
     url(r'^registration/$', views.registration_view,
         name='organizations_registration'),
     url(r'^check-slug/$', views.check_organization_slug,
