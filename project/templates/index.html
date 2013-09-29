@@ -1,1 +1,79 @@
-<h1>Hello</h1>
+{% extends 'base.html' %}
+
+{% block steps %}
+  <div class="steps">
+    <div class="steps__constrain">
+      <div class="welcome-text">
+        OpenID as a service <br>
+        Single login point for all your infrastructure services
+      </div>
+      <div class="item">
+        <span class="title">
+          step <span class="num">1</span>
+        </span>
+        <span class="text">
+          Register your company
+        </span>
+      </div>
+      <div class="item">
+        <span class="title">
+          step <span class="num">2</span>
+        </span>
+        <span class="text">
+          Invite your team members
+        </span>
+      </div>
+      <div class="item">
+        <span class="title">
+          step <span class="num">3</span>
+        </span>
+        <span class="text">
+          Setup your services <br>for single openid usage
+        </span>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+
+{% block content %}
+<div class="freg freg_index small-field">
+  <span class="title">Sign-up now</span>
+  <form action="#?">
+    <div class="field field-login">
+      <input type="text" placeholder="Company name">
+    </div>
+    <div class="field field-domain success">
+      <i class="ok"></i>
+      <input type="text" placeholder="URL">
+      <span class="domain">.singlepointhq.com</span>
+    </div>
+    <span class="line"></span>
+    <div class="field ">
+      <input type="text" placeholder="Full name">
+    </div>
+    <div class="fields-column left">
+      <div class="field ">
+        <input type="text" placeholder="Login">
+      </div>
+      <div class="field">
+        <input type="text" placeholder="Email">
+      </div>
+    </div>
+    <div class="fields-column right">
+      <div class="field ">
+        <input type="password" placeholder="Password">
+      </div>
+      <div class="field">
+        <input type="password" placeholder="Password 2">
+      </div>
+    </div>
+    <span class="line"></span>
+    <div class="field mb0">
+      <input type="submit" value="Send" class="btn">
+    </div>
+  </form>
+</div>
+
+
+{% endblock %}
