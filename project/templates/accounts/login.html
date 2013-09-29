@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 
-{% load widget_tweaks %}
+{% load widget_tweaks thumbnail %}
 
 {% block page %}
+{% if organization.logo %}
+  <img src="{% thumbnail organization.logo 250x250 crop %}">
+{% endif %}
 <div class="flogin flogin_center">
   <div class="flogin__head">
     Log in
