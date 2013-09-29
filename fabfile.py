@@ -11,7 +11,7 @@ def vagrant():
 
 @task
 def production():
-    env.hosts = ['singlepointhq.com']
+    env.hosts = ['192.241.251.177']
     env.user = 'singlepoint'
 
 
