@@ -1,0 +1,11 @@
+{% load widget_tweaks %}
+<form action="{% url 'organizations_organization_edit' %}" method="POST">
+  {% csrf_token %}
+  <div class="field">
+    {% render_field form.name placeholder='Company name' %}
+    {{ form.name.errors }}
+  </div>
+  <div class="button">
+    <input type="submit" value="Save" class="btn">
+  </div>
+</form>

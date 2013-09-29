@@ -50,7 +50,7 @@ a.btn {
 
 /*$errorlist*/
 .errorlist {
-  padding-top: 20px;
+  margin-bottom: 20px;
   text-align: right;
   color: #ee8a48;
 }
@@ -107,31 +107,19 @@ a.btn {
 }
 
 .flogin__form {
-  padding: 20px 20px 0;
+  padding: 20px;
 
-  .button  {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    z-index: 5;
-    margin: 0 -35px -35px 0;
+  .recovery {
+    position: relative;
+    top: 10px;
+    display: block;
+    float: left;
   }
 
-  input[type=submit] {
-    border: none;
-    .border-radius(50%);
+  .button {
+    float: right;
+    margin-bottom: 0;
     width: 100px;
-    height: 100px;
-    padding-top: 1px;
-    .gradient(#414141, #525252, #414141);
-    color: #fff;
-    font-size: 17px;
-    text-indent: none !important;
-    vertical-align: middle;
-
-    &:hover {
-      .gradient(#414141, #5b5b5b, #414141);
-    }
   }
 }
 
@@ -140,35 +128,6 @@ a.btn {
   left: 50%;
   top: 50%;
   margin: -110px 0 0 -150px;
-}
-
-.flogin__form_type {
-  position: relative;
-  padding: 20px;
-
-  .field {
-    margin-bottom: 0;
-  }
-
-  input[type=password] {
-    margin-top: -1px;
-  }
-
-  input:focus {
-    position: relative;
-    z-index: 2;
-  }
-
-  .button {
-    top: 20px;
-    right: -25px;
-    margin: 0;
-  }
-
-  input[type=submit] {
-    width: 89px;
-    height: 89px;
-  }
 }
 
 /*$freg*/

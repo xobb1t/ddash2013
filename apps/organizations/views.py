@@ -50,8 +50,6 @@ def check_organization_slug(request):
 
 @owner_required
 def organization_detail(request):
-    if not request.user.is_owner:
-        raise Http404
     organization = request.organization
 
     invite_form = InviteForm(data=request.POST or None,
@@ -62,12 +60,6 @@ def organization_detail(request):
         activation = user.make_activation()
         send_activation_email(request, activation)
 
-    edit_form = OrganizationForm(data=request.POST or None,
-                                 instance=organization,
-                                 prefix='edit')
-    if edit_form.is_valid():
-        organization = edit_form.save()
-
     members = organization.members.all()
     active_members_count = members.filter(is_active=True).count()
 
@@ -76,5 +68,15 @@ def organization_detail(request):
         'active_members_count': active_members_count,
         'organization': organization,
         'invite_form': invite_form,
-        'edit_form': edit_form
+    })
+
+
+@owner_required
+def organization_edit(request):
+    organization = request.organization
+    form = OrganizationForm(data=request.POST or None, instance=organization)
+    if form.is_valid():
+        form.save()
+    return render(request, 'organizations/organization_edit.html', {
+        'form': form
     })

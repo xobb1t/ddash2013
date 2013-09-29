@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% load thumbnail widget_tweaks %}
+{% load thumbnail widget_tweaks organizations %}
 
 {% block content %}
 <section class="profile">
@@ -15,15 +15,7 @@
   {% endif %}
   <div class="profile__info">
     <section class="profile__name" id="js-edit-name">
-      <form action="." method="POST">
-        {% csrf_token %}
-        <div class="field">
-          {% render_field edit_form.name placeholder='Company name' %}
-        </div>
-        <div class="button">
-          <input type="submit" value="Save" class="btn">
-        </div>
-      </form>
+      {% organization_edit_form %}
     </section>
 
     <div class="profile__id">
@@ -52,7 +44,7 @@
           </td>
           <td class="ctrl">
             {% if object.is_active %}
-            <i class="ok"></i>
+            <i class="ok" data-tooltip="Active"></i>
             {% else %}
             <i class="clock" data-tooltip="Inactive user"></i>
             {% endif %}
@@ -71,12 +63,15 @@
         <span class="title">Invite user</span>
         <div class="field">
           {% render_field invite_form.full_name placeholder='Full name' %}
+          {{ invite_form.full_name.errors }}
         </div>
         <div class="field field-column left">
           {% render_field invite_form.login placeholder='Login' %}
+          {{ invite_form.login.errors }}
         </div>
         <div class="field field-column right">
           {% render_field invite_form.email placeholder='Email' %}
+          {{ invite_form.email.errors }}
         </div>
         <div class="field clear">
           <input type="submit" value="Invite" class="btn">
