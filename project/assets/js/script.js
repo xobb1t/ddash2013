@@ -66,7 +66,6 @@ $(document).ready(function(){
     }, function(){
       tooltip.addClass('hidden');
     });
-
   }());
 
 // $change-password
@@ -101,7 +100,6 @@ $(document).ready(function(){
     }, 500);
   }
 
-
   $('#js-edit-name').on('submit', 'form', function(){
     var $this = $(this),
         block = $this.parent();
@@ -124,5 +122,4 @@ $(document).ready(function(){
   $('#js-logo-form input').change(function(){
     $(this).closest('form').submit();
   });
-
 });
