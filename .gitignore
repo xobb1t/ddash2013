@@ -37,3 +37,6 @@ nosetests.xml
 *.db
 
 .vagrant
+
+project/public/
+project/static/
