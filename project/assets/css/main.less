@@ -125,17 +125,48 @@ img {
 }
 
 .profile__avatar {
+  position: relative;
   margin-bottom: 20px;
   padding: 4px;
-  border: 1px solid #a1a1a1;
+  border: 1px solid #bbbbbb;
 
   .img {
     display: block;
     position: relative;
+    width: 188px;
+    height: 188px;
+    overflow: hidden;
+    background-color: #ebebeb;
   }
 
   img {
     vertical-align: top;
+  }
+
+  .btn {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    overflow: hidden;
+    padding: 6px 10px 4px;
+    height: auto;
+    cursor: pointer;
+    opacity: 0.5;
+    .transition(opacity 0.5s ease);
+
+
+    input {
+      position: absolute;
+      right: 0;
+      top: 0;
+      font-size: 200px;
+      .opacity(0);
+      cursor: pointer;
+    }
+  }
+
+  &:hover .btn {
+    opacity: 1;
   }
 }
 
