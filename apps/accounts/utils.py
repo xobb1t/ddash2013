@@ -12,4 +12,6 @@ def send_activation_email(request, activation):
     body = render_to_string('accounts/mail/activation_body.txt', {
         'activation': activation, 'site': request.site,
     })
-    send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [activation.user.email])
+    send_mail(
+        subject, body, settings.DEFAULT_FROM_EMAIL, [activation.user.email]
+    )

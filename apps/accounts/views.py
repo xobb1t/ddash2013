@@ -1,12 +1,10 @@
-from django.conf import settings
-from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import SetPasswordForm
 from django.http import Http404
 from django.shortcuts import redirect, render, get_object_or_404
 
-from .models import Activation, User
+from .models import Activation
 from .forms import LoginForm
 
 

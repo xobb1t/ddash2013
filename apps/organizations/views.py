@@ -1,5 +1,3 @@
-from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
 from django.http import Http404, HttpResponse
 from django.shortcuts import render, redirect
 from django.utils import simplejson as json
@@ -12,6 +10,7 @@ from .forms import (
     OrganizationRegistrationForm, OwnerRegistrationForm,
     InviteForm, OrganizationForm,
 )
+from .models import Organization
 
 
 def registration_view(request):
@@ -56,7 +55,7 @@ def member_list(request):
     organization = request.organization
     qs = organization.members.all()
     return render(request, 'organizations/member_list.html', {
-        'object_list': qs
+        'object_list': qs, 'organization': organization,
     })
 
 
@@ -73,19 +72,13 @@ def invite_member(request):
     })
 
 
-@login_required
-def organization(request):
-    return render(request, 'organizations/info.html', {
-        'object': request.organization
-    })
-
-
 @owner_required
 def organization_edit(request):
-    form = OrganizationForm(data=request.POST or None)
+    form = OrganizationForm(data=request.POST or None,
+                            instance=request.organization)
     if form.is_valid():
         form.save()
-        return redirect('organizations_organization_info')
-    return render(request, 'organizations/organization_edit.html', {
+        return redirect('organizations_organization_edit')
+    return render(request, 'organizations/tags/organization_edit.html', {
         'form': form
     })
