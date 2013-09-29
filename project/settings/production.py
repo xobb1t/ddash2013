@@ -1,3 +1,4 @@
+import os
 from .common import *
 
 
@@ -17,3 +18,10 @@ TEMPLATE_LOADERS = (
 )
 
 PREPEND_WWW = False
+
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_PASSWORD')
+if EMAIL_HOST_PASSWORD:
+    EMAIL_HOST = 'smtp.yandex.ru'
+    EMAIL_PORT = 465
+    EMAIL_HOST_USER = 'noreply@singlepointhq.com'
+    EMAIL_USE_TLS = True
