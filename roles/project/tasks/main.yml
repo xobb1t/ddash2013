@@ -1,0 +1,61 @@
+---
+- name: create {{ name }} user
+  user: name={{ name }} shell=/bin/bash state=present
+
+- name: create .ssh directory
+  file: name=/home/{{ name }}/.ssh owner={{ name }} group={{ name }} mode=0700 state=directory
+
+- name: upload ssh config
+  copy: src=ssh_config dest=/home/{{ name }}/.ssh/config owner={{ name }} group={{ name }} mode=0600
+
+- name: create virtualenv and install supervisor
+  pip: name=supervisor version=3.0b2 virtualenv=/home/{{ name }}/.env
+  sudo_user: '{{ name }}'
+
+- name: enable virtualenv auto-activation
+  lineinfile: >
+    dest=/home/{{ name }}/.profile
+    regexp='^source .*activate$'
+    line='source /home/{{ name }}/.env/bin/activate'
+    state=present
+
+- name: set project environment type
+  lineinfile: >
+    dest=/home/{{ name }}/.profile
+    regexp='^export DJANGO_SETTINGS_MODULE='
+    line='export DJANGO_SETTINGS_MODULE=project.settings.production'
+    state=present
+
+- name: create some useful directories
+  file: name={{ item }} owner={{ name }} group={{ name }} mode=0755 state=directory
+  with_items:
+  - /home/{{ name }}/etc
+  - /home/{{ name }}/etc/supervisord
+  - /home/{{ name }}/log
+  - /home/{{ name }}/run
+  - /var/www/{{ name }}
+
+- name: upload supervisord config
+  template: src=supervisord.conf.j2 dest=/home/{{ name }}/etc/supervisord.conf owner={{ name }} group={{ name }} mode=0644
+  notify: restart supervisord_{{ name }}
+
+- name: upload upstart script for {{ name }} supervisord
+  template: src=upstart.supervisord.conf.j2 dest=/etc/init/supervisord_{{ name }}.conf owner=root group=root mode=0644
+  notify: restart supervisord_{{ name }}
+
+- name: start supervisord_{{ name }} service
+  service: name=supervisord_{{ name }} state=started
+
+- name: create postgresql user
+  postgresql_user: name={{ name }} password={{ name }}
+  sudo_user: postgres
+
+- name: create postgresql database
+  postgresql_db: >
+    name={{ name }}
+    owner={{ name }}
+    encoding=UTF-8
+    lc_collate=ru_RU.UTF-8
+    lc_ctype=ru_RU.UTF-8
+    template=template0
+  sudo_user: postgres

@@ -1,0 +1,17 @@
+[unix_http_server]
+file=/home/{{ name }}/run/supervisor.sock
+
+[supervisord]
+logfile=/home/{{ name }}/log/supervisord.log
+pidfile=/home/{{ name }}/run/supervisord.pid
+nodaemon=true
+user={{ name }}
+
+[rpcinterface:supervisor]
+supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+
+[supervisorctl]
+serverurl=unix:///home/{{ name }}/run/supervisor.sock
+
+[include]
+files = supervisord/*.conf

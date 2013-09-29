@@ -1,0 +1,19 @@
+---
+- name: install python and python-dev
+  apt: pkg={{ item }} state=installed
+  with_items:
+  - python
+  - python-dev
+
+- name: install setuptools
+  shell: >
+    curl https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py | python
+    creates=/usr/local/bin/easy_install
+
+- name: install pip
+  shell: >
+    curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | python
+    creates=/usr/local/bin/pip
+
+- name: install virtualenv
+  pip: name=virtualenv use_mirrors=no state=present

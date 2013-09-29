@@ -1,0 +1,8 @@
+description "supervisord for {{ name }}"
+
+start on runlevel [2345]
+stop on runlevel [!2345]
+
+respawn
+
+exec /home/{{ name }}/.env/bin/supervisord --configuration /home/{{ name }}/etc/supervisord.conf

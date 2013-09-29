@@ -1,0 +1,5 @@
+- name: add mercurial ppa
+  apt_repository: repo=ppa:mercurial-ppa/releases update_cache=yes state=present
+
+- name: install mercurial
+  apt: pkg=mercurial state=present

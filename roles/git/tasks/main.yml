@@ -1,0 +1,5 @@
+- name: add git ppa
+  apt_repository: repo=ppa:git-core/ppa update_cache=yes state=present
+
+- name: install git
+  apt: pkg=git state=present

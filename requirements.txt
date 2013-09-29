@@ -1,0 +1,6 @@
+Jinja2==2.7.1
+MarkupSafe==0.18
+PyYAML==3.10
+ansible==1.3.2
+paramiko==1.11.1
+pycrypto==2.6

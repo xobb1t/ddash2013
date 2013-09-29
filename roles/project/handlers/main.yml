@@ -1,0 +1,3 @@
+---
+- name: restart supervisord_{{ name }}
+  service: name=supervisord_{{ name }} state=restarted

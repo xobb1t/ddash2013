@@ -1,0 +1,38 @@
+---
+- name: add postgresql apt key
+  apt_key: url=http://apt.postgresql.org/pub/repos/apt/ACCC4CF8.asc state=present
+
+- name: add postgresql apt repository
+  apt_repository: repo='deb http://apt.postgresql.org/pub/repos/apt precise-pgdg main' update_cache=yes state=present
+
+- name: install postgresql server
+  apt: name={{ item }} state=present
+  with_items:
+  - libpq-dev
+  - postgresql-9.2
+  - python-psycopg2
+
+- name: upload postgresql config
+  template: >
+    src=postgresql.custom.conf.jinja
+    dest=/etc/postgresql/9.2/main/postgresql.custom.conf
+    owner=postgres
+    group=postgres
+    mode=0644
+  notify: restart postgresql
+
+- name: enable postgresql config
+  lineinfile: >
+    dest=/etc/postgresql/9.2/main/postgresql.conf
+    line='include postgresql.custom.conf'
+    regexp=^include
+  notify: restart postgresql
+
+- name: upload hba config
+  template: >
+    src=pg_hba.conf.jinja
+    dest=/etc/postgresql/9.2/main/pg_hba.conf
+    owner=postgres
+    group=postgres
+    mode=0640
+  notify: restart postgresql

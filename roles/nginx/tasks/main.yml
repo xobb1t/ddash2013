@@ -1,0 +1,20 @@
+---
+- name: add nginx ppa
+  apt_repository: repo=ppa:nginx/stable update_cache=yes state=present
+
+- name: install nginx
+  apt: pkg={{ package_name|default('nginx') }} state=present
+
+- name: upload nginx.conf file
+  template: src=nginx.conf.jinja dest=/etc/nginx/nginx.conf owner=root group=root mode=0644
+  notify: restart nginx
+
+- name: create /var/www dir
+  file: path=/var/www owner=root group=root mode=0755 state=directory
+
+- name: disable default nginx site
+  file: path=/etc/nginx/sites-enabled/default state=absent
+  notify: restart nginx
+
+- name: remove default nginx site
+  file: path=/etc/nginx/sites-available/default state=absent

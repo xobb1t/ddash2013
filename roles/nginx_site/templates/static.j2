@@ -1,0 +1,12 @@
+server {
+  listen 80;
+  {% if server_name -%}
+  server_name {{ server_name }};
+  {%- endif %}
+
+
+  location / {
+    root {{ root }};
+    autoindex on;
+  }
+}

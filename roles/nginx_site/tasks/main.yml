@@ -1,0 +1,19 @@
+---
+- name: create {{ name }} site
+  template: >
+    src={{ template|default(type|default('proxy') + '.j2') }}
+    dest=/etc/nginx/sites-available/{{ name }}
+    owner=root
+    group=root
+    mode=0644
+  notify: restart nginx
+
+- name: enable {{ name }} site
+  file: >
+    src=/etc/nginx/sites-available/{{ name }}
+    dest=/etc/nginx/sites-enabled/{{ name }}
+    owner=root
+    group=root
+    mode=0644
+    state=link
+  notify: restart nginx

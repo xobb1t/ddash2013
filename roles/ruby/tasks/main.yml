@@ -1,0 +1,13 @@
+---
+- name: install ruby 1.9
+  apt: pkg={{ item }} state=present
+  with_items: [ruby1.9.1, ruby1.9.1-dev]
+
+- name: make ruby 1.9 the default
+  command: update-alternatives --set {{ item.name }} {{ item.path }}
+  with_items:
+  - {name: ruby, path: /usr/bin/ruby1.9.1}
+  - {name: gem, path: /usr/bin/gem1.9.1}
+
+- name: install bundler
+  gem: name=bundler user_install=no state=present
