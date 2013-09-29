@@ -1,4 +1,4 @@
 -r common.txt
 
-Pillow=1.7.8
+Pillow==1.7.8
 gunicorn==17.5
