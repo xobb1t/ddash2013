@@ -34,6 +34,13 @@
   {% endblock %}
   </div><!-- class="page" -->
 
+  <div class="loader" id="js-loader">
+    <span class="txt">
+      Loading ... <br>
+      Please wait
+    </span>
+  </div>
+
    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script type="text/javascript" src="{{ STATIC_URL }}js/libs/jquery-1.9.1.min.js"><\/script>')</script>
   {% js_asset_tag "js/script.js" %}

@@ -2,6 +2,23 @@
 
 $(document).ready(function(){
 
+  var $loader = $('#js-loader');
+
+  function show_loader(block) {
+    var w = block.innerWidth(),
+        h = block.innerHeight(),
+        l = block.offset().left,
+        t = block.offset().top;
+
+    $loader.show();
+
+    $loader.css({
+      'width': w + 10,
+      'height': h + 10,
+      'left': l - 5,
+      'top': t - 5
+    });
+  }
 
 // edit name
   (function(){
@@ -67,14 +84,19 @@ $(document).ready(function(){
 
 
   function ajax_go(form, block) {
-    $.ajax({
-      type: form.attr('method'),
-      url: form.attr('action'),
-      data: form.serialize(),
-      success: function(data) {
-        block.html(data);
-      }
-    });
+    show_loader(block);
+
+    setTimeout(function(){
+      $.ajax({
+        type: form.attr('method'),
+        url: form.attr('action'),
+        data: form.serialize(),
+        success: function(data) {
+          block.html(data);
+          $loader.hide();
+        }
+      });
+    }, 500);
   }
 
 
