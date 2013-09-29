@@ -9,6 +9,7 @@ class OrganizationMiddleware(object):
     def process_request(self, request):
         subdomain = request.subdomain
         user = request.user
+        request.organization = None
 
         if subdomain is None:
             request.organization = None
