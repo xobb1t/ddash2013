@@ -1,14 +1,33 @@
+import os
 from fabric.api import *
+from fabric.contrib.files import append, exists, upload_template
 
 
+@task
 def vagrant():
-    env.hosts = ['127.0.0.1:2222']
+    env.hosts = ['10.10.0.101']
     env.user = 'singlepoint'
 
 
+@task
 def production():
     env.hosts = ['singlepointhq.com']
     env.user = 'singlepoint'
+
+
+@task
+def upload_public_key():
+    with settings(user='root'):
+        to = 'singlepoint'
+        path = os.path.expanduser('~/.ssh/id_rsa.pub')
+        if to and os.path.exists(path):
+            key = ' '.join(open(path).read().strip().split(' ')[:2])
+            run('mkdir -p /home/{0}/.ssh'.format(to))
+            append('/home/{0}/.ssh/authorized_keys'.format(to), key, partial=True)
+            run('chown {0}:{0} /home/{0}/.ssh/authorized_keys'.format(to))
+            run('chmod 600 /home/{0}/.ssh/authorized_keys'.format(to))
+            run('chown {0}:{0} /home/{0}/.ssh'.format(to))
+            run('chmod 700 /home/{0}/.ssh'.format(to))
 
 
 @task
@@ -39,8 +58,13 @@ def install_requirements():
 
 @task
 def update_code():
-    local('git push ssh://{user}@{host}/~/.git'.format(**env))
-    run('cd ~/src && git pull')
+    if not exists('~/.git'):
+        run('mkdir ~/.git && cd ~/.git && git init --bare')
+    local('git push ssh://{user}@{host}/~/.git master'.format(**env))
+    if not exists('src'):
+        run('git clone .git src')
+    with cd('src'):
+        run('git pull origin master')
 
 
 @task
