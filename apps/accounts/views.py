@@ -5,7 +5,7 @@ from django.http import Http404
 from django.shortcuts import redirect, render, get_object_or_404
 
 from .models import Activation
-from .forms import LoginForm
+from .forms import LoginForm, UserEditForm
 
 
 def activate(request):
@@ -56,7 +56,13 @@ def profile(request, slug=None):
             raise Http404
         members = organization.members.all()
         user = get_object_or_404(members, login=slug)
+
+    edit_form = UserEditForm(request.POST or None, instance=user)
+    if edit_form.is_valid():
+        user = edit_form.save()
+
     return render(request, 'accounts/profile.html', {
         'user': user,
-        'organization': organization
+        'organization': organization,
+        'edit_form': edit_form
     })

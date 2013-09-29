@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import AuthenticationForm
 
+from .models import User
+
 
 class LoginForm(AuthenticationForm):
 
@@ -25,3 +27,10 @@ class LoginForm(AuthenticationForm):
                 raise forms.ValidationError(self.error_messages['inactive'])
 
         return self.cleaned_data
+
+
+class UserEditForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = ['full_name']
