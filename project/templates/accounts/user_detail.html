@@ -21,8 +21,8 @@
       <li class="item">
         OpenID:
         {% for openid in user.openid_set.all %}
-        {% if not forloop.first %}<br>{% endif %}
-        {% url 'openid-provider-identity' id=openid.openid %}
+          {% if not forloop.first %}<br>{% endif %}
+          {% url 'openid-provider-identity' id=openid.openid %}
         {% endfor %}
       </li>
       <li class="item">
