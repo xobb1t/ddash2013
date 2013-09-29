@@ -19,9 +19,33 @@ $(document).ready(function(){
 
 // tooltips
   (function(){
+    var tooltip = $('<span class="tooltip">dsfdsffs</span>');
+
+    $('body').append(tooltip);
+
+
     var item = $('[data-tooltip]');
 
-    console.log(item);
+    item.hover(function(){
+      var $this = $(this),
+          offset = $this.offset(),
+          tooltip_str = $this.data('tooltip');
+
+      tooltip.html(tooltip_str);
+
+      var width = tooltip.innerWidth(),
+          width_this = $this.innerWidth(),
+          height = tooltip.innerHeight();
+
+      tooltip.css({
+        'left': (offset.left - (width / 2)) + (width_this / 2),
+        'top': offset.top - height - 10
+      })
+    }, function(){
+      tooltip.css({
+        'left': -9000000
+      })
+    });
 
   }());
 

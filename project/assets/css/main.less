@@ -187,5 +187,35 @@ img {
       .opacity(100);
     }
   }
+
+  .ok,
+  .clock {
+    cursor: pointer;
+  }
+}
+
+/*$tooltip*/
+.tooltip {
+  position: absolute;
+  left: 20%;
+  top: 30%;
+  .border-radius(3px);
+  padding: 5px 8px 5px;
+  .gradient(#414141, #525252, #414141);
+  color: #fff;
+  font-size: 13px;
+
+  &:after {
+    position: absolute;
+    left: 50%;
+    bottom: -7px;
+    margin-left: -8px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid #414141;
+    content: '';
+  }
 }
 
