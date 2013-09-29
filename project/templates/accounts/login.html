@@ -21,7 +21,7 @@
         {% render_field form.password placeholder='Password' %}
       </div>
       {{ form.non_field_errors }}
-      <a href="#?" class="recovery">Recover password</a>
+      <a href="{% url 'password_reset' %}" class="recovery">Recover password</a>
       <div class="button field">
         <input type="submit" value="Go" class="btn">
       </div>

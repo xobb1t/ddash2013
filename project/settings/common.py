@@ -88,6 +88,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django.contrib.admin',
     'django_gears',
     'easy_thumbnails',
     'gravatar',
