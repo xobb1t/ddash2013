@@ -44,7 +44,6 @@ $(document).ready(function(){
 
     $('body').append(tooltip);
 
-
     var item = $('[data-tooltip]');
 
     item.hover(function(){
