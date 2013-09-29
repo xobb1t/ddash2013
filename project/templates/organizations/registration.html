@@ -6,30 +6,37 @@
   {% csrf_token %}
   <div class="field field-login{% if organization_form.name.errors %} error{% endif %}">
     {% render_field organization_form.name placeholder='Company name' %}
+    {{ organization_form.name.errors }}
   </div>
   <div class="field field-domain{% if organization_form.slug.errors %}error{% endif %}" id="js-field-domain">
     <i class="ok hide"></i>
     {% render_field organization_form.slug placeholder='URL' %}
     <span class="domain">.singlepointhq.com</span>
+    {{ organization_form.slug.errors }}
   </div>
   <span class="line"></span>
   <div class="field{% if user_form.full_name.errors %} error{% endif %}">
     {% render_field user_form.full_name placeholder='Full name' %}
+    {{ user_form.full_name.errors }}
   </div>
   <div class="fields-column left">
     <div class="field{% if user_form.login.errors %} error{% endif %}">
       {% render_field user_form.login placeholder='Login' %}
+      {{ user_form.login.errors }}
     </div>
     <div class="field{% if user_form.email.errors %} error{% endif %}">
       {% render_field user_form.email placeholder='Email' %}
+      {{ user_form.email.errors }}
     </div>
   </div>
   <div class="fields-column right">
     <div class="field{% if user_form.password1.errors %} error{% endif %}">
       {% render_field user_form.password1 placeholder='Password' %}
+      {{ user_form.password1.errors }}
     </div>
     <div class="field{% if user_form.password2.errors %} error{% endif %}">
       {% render_field user_form.password2 placeholder='Confirm password' %}
+      {{ user_form.password2.errors }}
     </div>
   </div>
   <span class="line"></span>

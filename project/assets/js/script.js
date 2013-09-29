@@ -65,21 +65,36 @@ $(document).ready(function(){
     });
   }());
 
-  function create_ajax_form(block){
-    block.on('submit', 'form', function(){
-      if ($('.field input', block).val() === '')
-        return false;
-      $.ajax({
-        type: $(this).attr('method'),
-        url: $(this).attr('action'),
-        data: $(this).serialize(),
-        success: function(data) {
-          block.html(data);
-        }
-      });
-      return false;
+
+  function ajax_go(form, block) {
+    $.ajax({
+      type: form.attr('method'),
+      url: form.attr('action'),
+      data: form.serialize(),
+      success: function(data) {
+        block.html(data);
+      }
     });
   }
-  create_ajax_form($('#js-edit-name'));
-  create_ajax_form($('#registration-form-wrapper'));
+
+
+  $('#js-edit-name').on('submit', 'form', function(){
+    var $this = $(this),
+        block = $this.parent();
+
+    if (!$('.field input', $this).val()) { return false; }
+
+    ajax_go($this, block);
+
+    return false;
+  });
+
+  $('#js-registration').on('submit', 'form', function(){
+    var $this = $(this),
+        block = $this.parent();
+
+    ajax_go($this, block);
+    return false;
+  });
+
 });
