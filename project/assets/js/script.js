@@ -83,7 +83,7 @@ $(document).ready(function(){
   }());
 
 
-  function ajax_go(form, block) {
+  function ajax_go(form, block, name) {
     show_loader(block);
 
     setTimeout(function(){
@@ -94,6 +94,9 @@ $(document).ready(function(){
         success: function(data) {
           block.html(data);
           $loader.hide();
+          if (name) {
+            block.removeClass('edit');
+          }
         }
       });
     }, 500);
@@ -106,7 +109,7 @@ $(document).ready(function(){
 
     if (!$('.field input', $this).val()) { return false; }
 
-    ajax_go($this, block);
+    ajax_go($this, block, true);
 
     return false;
   });
