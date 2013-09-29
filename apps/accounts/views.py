@@ -78,12 +78,13 @@ def user_detail(request, slug=None):
 
 @login_required
 def user_edit(request, slug=None):
-    user = request.user
     organization = request.organization
     if slug:
-        if not user.is_owner:
-            raise Http404
         user = get_object_or_404(organization.members.all(), login=slug)
+        if not request.user.is_owner and request.user != user:
+            raise Http404
+    else:
+        user = request.user
 
     form = UserEditForm(request.POST or None, instance=user)
     if form.is_valid():
